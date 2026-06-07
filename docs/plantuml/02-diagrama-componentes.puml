@@ -1,5 +1,5 @@
 @startuml
-title FoodStack - Diagrama de Componentes: Arquitetura AWS Planejada
+title FoodStack - Diagrama de Componentes: Arquitetura da Solução
 
 skinparam shadowing false
 skinparam componentStyle uml2
@@ -7,6 +7,8 @@ skinparam packageStyle rectangle
 skinparam defaultFontName Arial
 skinparam ArrowColor Black
 skinparam linetype ortho
+skinparam nodesep 60
+skinparam ranksep 55
 skinparam component {
   BackgroundColor White
   BorderColor Black
@@ -27,71 +29,77 @@ skinparam queue {
 top to bottom direction
 
 rectangle "Canais de Acesso" as Canais {
-  component "Portal Web\n(React + Vite)" as PortalWeb
-  component "App Mobile\n(futuro)" as AppMobile
+  component "Portal Web\nReact + Vite" as PortalWeb
+  component "App Mobile\nFuturo" as AppMobile
 }
 
-component "API Gateway\nREST/JSON\n\nLogin/Token\nDespensa API\nReceitas API\nSugestões API\nCompras API\nFamília API\nDashboard API" as Gateway
+component "API Gateway\nREST/JSON + JWT\n\n/auth\n/despensas\n/receitas\n/sugestoes\n/compras\n/familia\n/dashboard" as Gateway
 
 rectangle "Backend (AWS Cloud)\nAPI Spring Boot modular" as Backend {
-  component "Auth Service\n(AWS Cognito)" as Auth
-  component "Módulo de\nDespensa" as Pantry
-  component "Módulo de\nReceitas" as Recipe
-  component "Motor de\nSugestão" as Suggestion
-  component "Módulo de\nCompras" as Shopping
-  component "Módulo de\nCompartilhamento" as Sharing
-  component "Módulo de\nNotificações" as Notification
-  component "Módulo de\nAuditoria" as Audit
-  component "Dashboard\nService" as Dashboard
+  rectangle "Segurança e gestão" as SegurancaGestao {
+    component "Auth Service\nAWS Cognito\n- autenticação\n- sessão\n- permissões" as Auth
+    component "Compartilhamento Service\n- membros\n- convites\n- papéis" as Sharing
+    component "Dashboard Service\n- indicadores\n- métricas de uso" as Dashboard
+  }
+
+  rectangle "Domínio FoodStack" as Dominio {
+    component "Despensa Service\n- estoque\n- validade\n- armazenamento" as Pantry
+    component "Receitas Service\n- catálogo\n- receitas próprias\n- favoritos" as Recipe
+    component "Sugestão Engine\n- compatibilidade\n- vencimento\n- restrições" as Suggestion
+    component "Compras Service\n- faltantes\n- lista de compras" as Shopping
+  }
+
+  rectangle "Suporte operacional" as Suporte {
+    component "Notificação Service\n- alertas\n- eventos\n- lembretes" as Notification
+    component "Auditoria Service\n- histórico\n- rastreabilidade" as Audit
+  }
 }
 
 rectangle "Infraestrutura AWS" as Infra {
-  database "PostgreSQL\n(Amazon RDS)" as RDS
-  database "Redis\n(ElastiCache)" as Redis
-  queue "Fila de Eventos\n(Amazon SQS)" as SQS
-  component "E-mail\n(Amazon SES)" as SES
-  component "Storage\n(Amazon S3)" as S3
-  component "Logs/Métricas\n(CloudWatch)" as CloudWatch
+  database "PostgreSQL\nAmazon RDS\nDados transacionais" as RDS
+  database "Redis\nElastiCache\nRanking/cache" as Redis
+  queue "Amazon SQS\nEventos de domínio" as SQS
+  component "Amazon SES\nE-mail" as SES
+  component "Amazon S3\nImagens/anexos" as S3
+  component "CloudWatch\nLogs/métricas" as CloudWatch
 }
 
 rectangle "Serviços Externos" as Externos {
-  component "Firebase\nCloud Messaging" as Firebase
-  component "OpenFoodFacts\nAPI" as FoodFacts
+  component "Firebase Cloud Messaging\nPush notification" as Firebase
+  component "OpenFoodFacts API\nDados nutricionais" as FoodFacts
 }
+
+SegurancaGestao -[hidden]down-> Dominio
+Dominio -[hidden]down-> Suporte
 
 PortalWeb --> Gateway : HTTPS
 AppMobile --> Gateway : HTTPS
+Gateway --> Backend : roteamento REST
 
-Gateway --> Backend : roteia contratos REST
+Suggestion ..> Pantry : consulta estoque
+Suggestion ..> Recipe : consulta receitas
+Shopping ..> Pantry : calcula saldo
+Shopping ..> Recipe : lê ingredientes
+Sharing ..> Auth : valida identidade
+Audit ..> Pantry : registra movimentações
+Notification ..> Pantry : acompanha validade
 
-Backend --> RDS : persistência transacional
-Backend --> Redis : cache de ranking
-Backend --> SQS : eventos de domínio
-Backend --> S3 : imagens/anexos
-Backend --> CloudWatch : logs e métricas
+Backend -down-> Infra : usa serviços AWS
+Backend -down.> Externos : integrações externas
 
-Notification --> SES : e-mail
-Notification --> Firebase : push
-Recipe ..> FoodFacts : dados nutricionais
+Infra -[hidden]right-> Externos
 
-Suggestion ..> Pantry : estoque
-Suggestion ..> Recipe : receitas
-Shopping ..> Pantry : faltantes
-Shopping ..> Recipe : ingredientes
-Sharing ..> Auth : identidade
-Audit ..> Pantry : movimentações
+note right of Gateway
+  O gateway centraliza os contratos HTTP.
+  Cada rota é atendida por um módulo do backend.
+end note
 
 legend left
-  |= Camada |= Responsabilidade |
-  | Canais | Acesso web/mobile do usuário |
-  | API Gateway | Contratos REST/JSON do sistema |
-  | Backend | Regras de negócio, sugestão, compras e auditoria |
-  | Infraestrutura | Persistência, fila, cache, storage e observabilidade |
-  | Externos | Push e consulta de dados nutricionais |
+  |= Elemento |= Papel no diagrama |
+  | Componente | Unidade lógica implantável ou módulo da API |
+  | Dependência tracejada | Colaboração entre módulos |
+  | Dependência contínua | Integração técnica ou uso de infraestrutura |
+  | AWS/Externos | Serviços consumidos pela aplicação |
+  | Escopo | Projeto arquitetural, sem implementação obrigatória |
 endlegend
-
-note bottom of Backend
-  Entrega de projeto/arquitetura: os componentes representam
-  módulos planejados e contratos técnicos, sem implementação obrigatória.
-end note
 @enduml
