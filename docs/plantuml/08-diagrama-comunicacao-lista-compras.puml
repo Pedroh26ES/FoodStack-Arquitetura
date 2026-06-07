@@ -1,49 +1,105 @@
 @startuml
-title FoodStack - Diagrama de Comunicação: Gerar Lista de Compras
+title FoodStack - Diagrama de Comunicação: Geração de Lista de Compras
 
 skinparam shadowing false
 skinparam defaultFontName Arial
-skinparam ArrowColor Black
-skinparam linetype polyline
-skinparam nodesep 165
-skinparam ranksep 145
-skinparam object {
-  BackgroundColor #FFF8CC
-  BorderColor Black
+skinparam sequence {
+  ArrowColor Black
+  LifeLineBorderColor Black
+  ParticipantBorderColor Black
+  ParticipantBackgroundColor #F2F2FF
+  ActorBorderColor Black
+  ActorBackgroundColor White
+  DatabaseBorderColor Black
+  DatabaseBackgroundColor White
+  BoundaryBorderColor Black
+  BoundaryBackgroundColor #FFF8CC
+  ControlBorderColor Black
+  ControlBackgroundColor #F2F2FF
+  EntityBorderColor Black
+  EntityBackgroundColor #F8FFF2
 }
 
-object "Usuario" as Usuario
-object "SistemaFoodStack" as Sistema
-object "BancoDeDados" as Banco
-object "Receita" as Receita
-object "Despensa" as Despensa
-object "Estoque" as Estoque
-object "ListaCompras" as Lista
-object "HistoricoEstoque" as Historico
-object "Notificacao" as Notificacao
+' Padrão inspirado nos gabaritos enviados:
+' participantes tipados, mensagens numeradas, retornos explícitos e blocos de fluxo.
+' A numeração é manual para permitir hierarquia 1, 1.1, 1.1.1 sem duplicidade.
+actor "Usuário" as Usuario
+control "Sistema\nFoodStack" as Sistema
+entity "Receita" as Receita
+entity "Despensa\nVirtual" as Despensa
+database "Banco de\nDados" as Banco
+boundary "Serviço de\nNotificação" as Notificacao
 
-Usuario -[hidden]right- Sistema
-Sistema -[hidden]right- Banco
-Notificacao -[hidden]down- Sistema
-Receita -[hidden]right- Despensa
-Despensa -[hidden]right- Estoque
-Estoque -[hidden]right- Lista
-Lista -[hidden]right- Historico
-Sistema -[hidden]down- Estoque
+== Fluxo Principal: Geração da Lista de Compras ==
 
-Usuario -right-> Sistema : 1: selecionarReceita(receitaID)\n2: informarPorcoes(porcoes)\n7: visualizarLista(listaID)
+Usuario -> Sistema: 1: solicitarListaCompras(receitaID, despensaID, porcoes)
+activate Sistema
+note right of Sistema
+  O sistema coordena autorização, receita,
+  estoque, cálculo de faltantes e persistência.
+end note
 
-Sistema -right-> Banco : 1.1: validarMembroDespensa(usuarioID)\n1.1.1: permissaoOK\n2.1: buscarReceitaEEstoque(receitaID)\n2.1.1: dadosParaCalculo\n5: persistirLista(lista)\n5.1: listaSalva(listaID)
+Sistema -> Banco: 1.1: validarAcesso(usuarioID, despensaID)
+activate Banco
+Banco --> Sistema: 1.1.1: acessoAutorizado(papel, ativo)
+deactivate Banco
 
-Sistema -down-> Receita : 2.2: obterIngredientesNecessarios()\n2.2.1: ingredientesReceita
+Sistema -> Receita: 2: obterIngredientesNecessarios(receitaID)
+activate Receita
+Receita -> Banco: 2.1: buscarReceitaDetalhada(receitaID)
+activate Banco
+Banco --> Receita: 2.1.1: receitaDetalhada(ingredientes, restricoes)
+deactivate Banco
+Receita --> Sistema: 2.2: ingredientesNecessarios(lista)
+deactivate Receita
 
-Sistema -down-> Despensa : 3: consultarItensDisponiveis()\n3.1: itensDaDespensa
+Sistema -> Despensa: 3: consultarEstoqueAtual(despensaID)
+activate Despensa
+Despensa -> Banco: 3.1: listarItensDisponiveis(despensaID)
+activate Banco
+Banco --> Despensa: 3.1.1: itensComSaldoValidadeELocal
+deactivate Banco
+Despensa --> Sistema: 3.2: estoqueAtual(listaItens)
+deactivate Despensa
 
-Sistema -down-> Estoque : 4: normalizarUnidades()\n4.1: calcularSaldoPorIngrediente()
+Sistema -> Sistema: 4: normalizarUnidadesDeMedida()
+Sistema -> Sistema: 4.1: calcularSaldoPorIngrediente()
+Sistema -> Sistema: 4.2: compararNecessarioComDisponivel()
+Sistema -> Sistema: 4.3: consolidarItensFaltantes()
 
-Sistema --> Lista : 4.2: calcularFaltantes()\n4.3: montarItensCompra()\n4.4: totalizarQuantidades()
+alt Existem ingredientes faltantes
+  Sistema -> Banco: 5: persistirListaCompras(usuarioID, receitaID, itensFaltantes)
+  activate Banco
+  Banco --> Sistema: 5.1: listaCriada(listaID)
+  deactivate Banco
 
-Sistema --> Historico : 5.2: registrarOrigemLista()\n5.2.1: historicoRegistrado
+  par Auditoria da geração
+    Sistema -> Banco: 5.2: registrarHistoricoOrigem(listaID, receitaID)
+    activate Banco
+    Banco --> Sistema: 5.2.1: historicoRegistrado
+    deactivate Banco
+  else Notificação ao usuário
+    Sistema -> Notificacao: 5.3: notificarListaCriada(usuarioID, listaID)
+    activate Notificacao
+    Notificacao --> Sistema: 5.3.1: notificacaoRegistrada
+    deactivate Notificacao
+  end
 
-Sistema -up-> Notificacao : 6: notificarListaCriada(listaID)\n6.1: notificacaoRegistrada
+  Sistema --> Usuario: 6: exibirListaCompras(listaID, itensFaltantes)
+else Receita pode ser preparada com estoque atual
+  Sistema --> Usuario: 6: informarReceitaDisponivelSemCompra(receitaID)
+end
+
+== Fluxo Opcional: Atualização Manual da Lista ==
+
+opt Usuário marca item como comprado
+  Usuario -> Sistema: 7: marcarItemComprado(listaID, itemListaID)
+  Sistema -> Banco: 7.1: atualizarStatusItem(itemListaID, COMPRADO)
+  activate Banco
+  Banco --> Sistema: 7.1.1: itemAtualizado
+  deactivate Banco
+  Sistema --> Usuario: 7.2: confirmarAtualizacaoLista(listaID)
+end
+
+deactivate Sistema
 @enduml
