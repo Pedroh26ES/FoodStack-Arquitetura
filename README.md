@@ -21,6 +21,12 @@
   <img src="https://img.shields.io/badge/Docker-Compose-2496ED?style=for-the-badge&logo=docker&logoColor=white" alt="Docker"/>
 </p>
 
+<h2 align="center">➡️ <a href="#galeria-diagramas">VER IMAGENS DOS DIAGRAMAS UML</a> ⬅️</h2>
+
+<p align="center">
+  <a href="#galeria-diagramas"><strong>Ir direto para a galeria renderizada dos arquivos PlantUML</strong></a>
+</p>
+
 ---
 
 <a id="atalhos"></a>
@@ -36,7 +42,8 @@
 | Regras de negócio | [Regras de negócio](#regras-de-negocio) |
 | Contratos de operação | [Contratos de operação](#contratos-de-operacao) |
 | Arquitetura | [Arquitetura de solução](#arquitetura-de-solucao) |
-| PlantUML | [Diagramas PlantUML](#diagramas-plantuml) |
+| **Imagens dos diagramas** | **[VER GALERIA UML RENDERIZADA](#galeria-diagramas)** |
+| PlantUML | [Arquivos PlantUML](#diagramas-plantuml) |
 | Modelo de dados | [Modelo de dados](#modelo-de-dados) |
 | Segurança | [Segurança e privacidade](#seguranca-e-privacidade) |
 | Rastreabilidade | [Matriz de rastreabilidade](#matriz-de-rastreabilidade) |
@@ -66,7 +73,7 @@
 - [18. Observabilidade](#observabilidade)
 - [19. Estratégia de testes](#estrategia-de-testes)
 - [20. Deploy planejado](#deploy-planejado)
-- [21. Diagramas PlantUML](#diagramas-plantuml)
+- [21. Diagramas PlantUML e imagens renderizadas](#diagramas-plantuml)
 - [22. Matriz de rastreabilidade](#matriz-de-rastreabilidade)
 - [23. Estrutura do repositório](#estrutura-do-repositorio)
 - [24. Validação da entrega](#validacao-da-entrega)
@@ -671,7 +678,103 @@ flowchart TB
 
 ## Diagramas PlantUML
 
-O código PlantUML obrigatório está em [`docs/plantuml`](docs/plantuml).
+O código PlantUML obrigatório está em [`docs/plantuml`](docs/plantuml) e as imagens renderizadas estão em [`docs/diagramas`](docs/diagramas).
+
+<a id="galeria-diagramas"></a>
+
+### Galeria visual dos diagramas
+
+> As imagens abaixo foram geradas a partir dos arquivos `.puml` do projeto. Cada item também mantém o link direto para o código PlantUML correspondente.
+
+#### 01 - Diagrama de Casos de Uso
+
+[Código PlantUML](docs/plantuml/01-casos-de-uso.puml)
+
+<p align="center">
+  <img src="docs/diagramas/01-casos-de-uso.png" alt="Diagrama de Casos de Uso do FoodStack" width="900"/>
+</p>
+
+#### 02 - Diagrama de Componentes
+
+[Código PlantUML](docs/plantuml/02-arquitetura-componentes.puml)
+
+<p align="center">
+  <img src="docs/diagramas/02-arquitetura-componentes.png" alt="Diagrama de Componentes do FoodStack" width="900"/>
+</p>
+
+#### 03 - Diagrama de Classes
+
+[Código PlantUML](docs/plantuml/03-diagrama-classes.puml)
+
+<p align="center">
+  <img src="docs/diagramas/03-diagrama-classes.png" alt="Diagrama de Classes do FoodStack" width="900"/>
+</p>
+
+#### 04 - Modelo de Dados / DER
+
+[Código PlantUML](docs/plantuml/04-modelo-dados-der.puml)
+
+<p align="center">
+  <img src="docs/diagramas/04-modelo-dados-der.png" alt="Modelo de Dados do FoodStack" width="900"/>
+</p>
+
+#### 05 - Diagrama de Sequência: Sugestão de Receita
+
+[Código PlantUML](docs/plantuml/05-sequencia-sugestao-receita.puml)
+
+<p align="center">
+  <img src="docs/diagramas/05-sequencia-sugestao-receita.png" alt="Diagrama de Sequência de Sugestão de Receita" width="760"/>
+</p>
+
+#### 06 - Diagrama de Sequência: Preparar Receita
+
+[Código PlantUML](docs/plantuml/06-sequencia-preparar-receita.puml)
+
+<p align="center">
+  <img src="docs/diagramas/06-sequencia-preparar-receita.png" alt="Diagrama de Sequência de Preparar Receita" width="760"/>
+</p>
+
+#### 07 - Diagrama de Sequência: Compartilhar Despensa
+
+[Código PlantUML](docs/plantuml/07-sequencia-compartilhar-despensa.puml)
+
+<p align="center">
+  <img src="docs/diagramas/07-sequencia-compartilhar-despensa.png" alt="Diagrama de Sequência de Compartilhar Despensa" width="760"/>
+</p>
+
+#### 08 - Diagrama de Atividade: Alerta de Vencimento
+
+[Código PlantUML](docs/plantuml/08-atividade-alerta-vencimento.puml)
+
+<p align="center">
+  <img src="docs/diagramas/08-atividade-alerta-vencimento.png" alt="Diagrama de Atividade de Alerta de Vencimento" width="760"/>
+</p>
+
+#### 09 - Diagrama de Estados: Item de Despensa
+
+[Código PlantUML](docs/plantuml/09-estados-item-despensa.puml)
+
+<p align="center">
+  <img src="docs/diagramas/09-estados-item-despensa.png" alt="Diagrama de Estados do Item de Despensa" width="680"/>
+</p>
+
+#### 10 - Diagrama de Comunicação: Lista de Compras
+
+[Código PlantUML](docs/plantuml/10-comunicacao-lista-compras.puml)
+
+<p align="center">
+  <img src="docs/diagramas/10-comunicacao-lista-compras.png" alt="Diagrama de Comunicação da Lista de Compras" width="900"/>
+</p>
+
+#### 11 - Diagrama de Implantação
+
+[Código PlantUML](docs/plantuml/11-implantacao.puml)
+
+<p align="center">
+  <img src="docs/diagramas/11-implantacao.png" alt="Diagrama de Implantação do FoodStack" width="760"/>
+</p>
+
+### Arquivos PlantUML
 
 | Arquivo | Tipo | Cobertura |
 |---|---|---|
@@ -731,6 +834,18 @@ foodstack/
 │   ├── logo-foodstack.svg
 │   └── logo-foodstack.png
 └── docs/
+    ├── diagramas/
+    │   ├── 01-casos-de-uso.png
+    │   ├── 02-arquitetura-componentes.png
+    │   ├── 03-diagrama-classes.png
+    │   ├── 04-modelo-dados-der.png
+    │   ├── 05-sequencia-sugestao-receita.png
+    │   ├── 06-sequencia-preparar-receita.png
+    │   ├── 07-sequencia-compartilhar-despensa.png
+    │   ├── 08-atividade-alerta-vencimento.png
+    │   ├── 09-estados-item-despensa.png
+    │   ├── 10-comunicacao-lista-compras.png
+    │   └── 11-implantacao.png
     └── plantuml/
         ├── 01-casos-de-uso.puml
         ├── 02-arquitetura-componentes.puml
@@ -755,9 +870,11 @@ foodstack/
 |---|---|
 | README único com especificação completa | OK |
 | Outros arquivos Markdown removidos | OK |
-| Pasta `docs` contém somente PlantUML | OK |
+| Pasta `docs/plantuml` contém o código PlantUML obrigatório | OK |
+| Pasta `docs/diagramas` contém as imagens renderizadas usadas no README | OK |
 | Código de aplicação ausente | OK |
 | 11 arquivos `.puml` versionados | OK |
+| 11 imagens `.png` renderizadas e exibidas no README | OK |
 | PlantUML renderiza sem erro de sintaxe | OK |
 | Requisitos, regras, contratos, arquitetura e rastreabilidade no README | OK |
 
