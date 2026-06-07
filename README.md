@@ -131,26 +131,24 @@ Uma despensa virtual compartilhável que:
 
 ## ✅ Requisitos funcionais
 
+> A numeração dos requisitos funcionais foi alinhada às **14 histórias de usuário**: cada `RF` representa a capacidade principal descrita pela `US` correspondente.
+
 | ID | Requisito |
 |---|---|
-| RF-01 | Cadastrar ingrediente com nome, quantidade, unidade, validade opcional e local de armazenamento. |
-| RF-02 | Editar quantidade, unidade, validade e local de um item da despensa. |
-| RF-03 | Excluir item da despensa mediante confirmação. |
-| RF-04 | Listar itens disponíveis com filtros por local, validade, categoria e status. |
-| RF-05 | Classificar itens como disponíveis, próximos do vencimento, vencidos, consumidos ou removidos. |
-| RF-06 | Notificar usuário sobre itens próximos do vencimento. |
-| RF-07 | Sugerir receitas com base nos ingredientes disponíveis. |
-| RF-08 | Calcular percentual de compatibilidade entre receita e estoque. |
-| RF-09 | Priorizar receitas que utilizam itens próximos da validade. |
-| RF-10 | Filtrar receitas por restrições alimentares. |
-| RF-11 | Favoritar e desfavoritar receitas. |
-| RF-12 | Registrar receita como preparada e baixar estoque automaticamente. |
-| RF-13 | Gerar lista de compras com ingredientes ausentes ou insuficientes. |
-| RF-14 | Cadastrar receitas próprias. |
-| RF-15 | Compartilhar despensa com membros por convite. |
-| RF-16 | Controlar permissões de dono, editor e leitor. |
-| RF-17 | Registrar histórico de alterações de estoque. |
-| RF-18 | Explicar recomendação com ingredientes usados, faltantes e priorizados. |
+| RF-01 | Cadastrar manualmente ingredientes na despensa informando nome, quantidade e unidade. |
+| RF-02 | Registrar data de validade opcional ao cadastrar ou editar um ingrediente. |
+| RF-03 | Notificar o usuário sobre ingredientes próximos da data de validade. |
+| RF-04 | Visualizar o estoque atual com filtros por local, validade, categoria e status. |
+| RF-05 | Classificar o local de armazenamento do ingrediente, como geladeira, congelador, armário ou despensa. |
+| RF-06 | Editar quantidade, unidade, validade e local de um ingrediente ou excluí-lo mediante confirmação. |
+| RF-07 | Sugerir receitas com base nos ingredientes disponíveis, exibindo compatibilidade, itens usados e faltantes. |
+| RF-08 | Priorizar sugestões de receitas que utilizem ingredientes próximos do vencimento. |
+| RF-09 | Registrar uma receita como preparada, baixar o estoque automaticamente e salvar histórico da movimentação. |
+| RF-10 | Filtrar receitas por restrições alimentares, como vegetariana, sem glúten ou sem lactose. |
+| RF-11 | Favoritar e desfavoritar receitas para acesso futuro. |
+| RF-12 | Gerar lista de compras com ingredientes ausentes ou insuficientes para uma receita escolhida. |
+| RF-13 | Cadastrar receitas próprias com ingredientes, porções e modo de preparo. |
+| RF-14 | Compartilhar a despensa com membros da família por convite e controlar permissões de dono, editor e leitor. |
 
 ---
 
@@ -492,19 +490,19 @@ java -jar plantuml.jar -tpng docs/plantuml/*.puml -o ../diagramas
 | História | RF | RN | Caso de uso | Diagrama |
 |---|---|---|---|---|
 | US-01 | RF-01 | RN-01 | UC-01 | 01, 03 |
-| US-02 | RF-01, RF-05 | RN-02, RN-03 | UC-02 | 01, 07 |
-| US-03 | RF-05, RF-06 | RN-03 | UC-03 | 06 |
+| US-02 | RF-02 | RN-02, RN-03 | UC-02 | 01, 07 |
+| US-03 | RF-03 | RN-03 | UC-03 | 06 |
 | US-04 | RF-04 | RN-05 | UC-04 | 01, 04 |
-| US-05 | RF-01, RF-02 | RN-01 | UC-05 | 03 |
-| US-06 | RF-02, RF-03 | RN-06 | UC-06 | 03, 07 |
-| US-07 | RF-07, RF-08 | RN-07 | UC-07 | 05 |
-| US-08 | RF-09 | RN-08 | UC-08 | 05, 06 |
-| US-09 | RF-12, RF-17 | RN-10, RN-11 | UC-09 | 05, 07 |
+| US-05 | RF-05 | RN-01 | UC-05 | 03 |
+| US-06 | RF-06 | RN-06 | UC-06 | 03, 07 |
+| US-07 | RF-07 | RN-07 | UC-07 | 05 |
+| US-08 | RF-08 | RN-08 | UC-08 | 05, 06 |
+| US-09 | RF-09 | RN-10, RN-11 | UC-09 | 05, 07 |
 | US-10 | RF-10 | RN-09 | UC-10 | 05 |
 | US-11 | RF-11 | - | UC-11 | 03 |
-| US-12 | RF-13 | RN-13 | UC-12 | 08 |
-| US-13 | RF-14 | - | UC-13 | 03, 04 |
-| US-14 | RF-15, RF-16 | RN-14, RN-15 | UC-14 | 01, 02 |
+| US-12 | RF-12 | RN-13 | UC-12 | 08 |
+| US-13 | RF-13 | - | UC-13 | 03, 04 |
+| US-14 | RF-14 | RN-14, RN-15 | UC-14 | 01, 02 |
 
 ---
 
