@@ -1,0 +1,50 @@
+@startuml
+title FoodStack - Sequencia: Sugestao de Receita
+
+skinparam shadowing false
+skinparam sequence {
+  ArrowColor #0B2545
+  LifeLineBorderColor #0B2545
+  ParticipantBorderColor #0B2545
+  ParticipantBackgroundColor #F6F7F9
+}
+
+actor "Usuário" as U
+participant "Front-end" as FE
+participant "RecipeController" as RC
+participant "SuggestionService" as SS
+participant "PantryService" as PS
+participant "RecipeRepository" as RR
+participant "ExpiryPolicy" as EP
+participant "MatchEngine" as ME
+database "PostgreSQL" as DB
+
+U -> FE : Solicita sugestões\n(restrições, priorizar vencimento)
+FE -> RC : GET /api/despensas/{id}/sugestoes
+RC -> SS : sugerirReceitas(despensaId, filtros)
+SS -> PS : listarItensDisponiveis(despensaId)
+PS -> DB : consultar itens da despensa
+DB --> PS : itens disponíveis
+PS --> SS : itens disponíveis
+
+SS -> RR : buscarReceitasCandidatas(filtros)
+RR -> DB : consultar receitas e ingredientes
+DB --> RR : receitas candidatas
+RR --> SS : receitas candidatas
+
+loop para cada receita
+  SS -> EP : identificarItensPrioritarios(itens)
+  EP --> SS : itens próximos do vencimento
+  SS -> ME : calcularCompatibilidade(receita, itens, prioridades)
+  ME --> SS : score, faltantes e justificativa
+end
+
+alt restrições alimentares informadas
+  SS -> SS : remover receitas incompatíveis
+end
+
+SS -> SS : ordenar por compatibilidade\ne prioridade de vencimento
+SS --> RC : ranking de sugestões
+RC --> FE : 200 OK + DTOs
+FE --> U : Exibe receitas, score,\nfaltantes e justificativa
+@enduml

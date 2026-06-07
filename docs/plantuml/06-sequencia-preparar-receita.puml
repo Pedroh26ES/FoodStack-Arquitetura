@@ -1,0 +1,50 @@
+@startuml
+title FoodStack - Sequencia: Preparar Receita e Baixar Estoque
+
+skinparam shadowing false
+skinparam sequence {
+  ArrowColor #0B2545
+  LifeLineBorderColor #0B2545
+  ParticipantBorderColor #0B2545
+  ParticipantBackgroundColor #F6F7F9
+}
+
+actor "Usuário" as U
+participant "Front-end" as FE
+participant "RecipeController" as RC
+participant "PreparationService" as Prep
+participant "PermissionPolicy" as Perm
+participant "PantryService" as Pantry
+participant "StockPolicy" as Stock
+database "PostgreSQL" as DB
+queue "EventPublisher" as Events
+
+U -> FE : Marca receita como preparada
+FE -> RC : POST /api/receitas/{id}/preparos
+RC -> Prep : prepararReceita(despensaId, receitaId, porcoes)
+Prep -> Perm : validarEditor(usuario, despensa)
+Perm --> Prep : autorizado
+Prep -> Pantry : obterItensNecessarios(receitaId, despensaId)
+Pantry -> DB : consultar receita e estoque
+DB --> Pantry : ingredientes e quantidades
+Pantry --> Prep : plano de baixa
+Prep -> Stock : validarDisponibilidade(plano)
+
+alt estoque suficiente
+  Stock --> Prep : plano aprovado
+  Prep -> DB : iniciar transação
+  Prep -> DB : atualizar quantidades
+  Prep -> DB : registrar histórico
+  Prep -> DB : registrar preparo
+  Prep -> DB : commit
+  Prep -> Events : publicar ReceitaPreparada
+  Prep --> RC : preparo confirmado
+  RC --> FE : 200 OK
+  FE --> U : Estoque atualizado
+else estoque insuficiente
+  Stock --> Prep : inconsistência encontrada
+  Prep --> RC : erro de estoque insuficiente
+  RC --> FE : 409 Conflict
+  FE --> U : Mostra itens insuficientes
+end
+@enduml

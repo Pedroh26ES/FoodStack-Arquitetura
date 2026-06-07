@@ -1,0 +1,33 @@
+@startuml
+title FoodStack - Diagrama de Comunicação: Gerar Lista de Compras
+
+skinparam shadowing false
+skinparam object {
+  BackgroundColor #F6F7F9
+  BorderColor #0B2545
+}
+skinparam ArrowColor #0B2545
+
+object "usuario:Usuario" as Usuario
+object "web:FrontEnd" as Web
+object "shoppingController:ShoppingController" as Controller
+object "shoppingService:ShoppingListService" as Shopping
+object "pantryService:PantryService" as Pantry
+object "recipeRepository:RecipeRepository" as RecipeRepo
+object "matchEngine:MatchEngine" as Match
+object "db:PostgreSQL" as DB
+
+Usuario --> Web : 1. escolhe receita
+Web --> Controller : 2. gerarListaCompras(receitaId, porcoes)
+Controller --> Shopping : 3. gerarLista(despensaId, receitaId)
+Shopping --> Pantry : 4. consultarEstoque(despensaId)
+Pantry --> DB : 4.1 buscar itens disponíveis
+Shopping --> RecipeRepo : 5. buscarReceita(receitaId)
+RecipeRepo --> DB : 5.1 buscar ingredientes da receita
+Shopping --> Match : 6. calcularFaltantes(receita, estoque)
+Match --> Shopping : 7. itens faltantes e quantidades
+Shopping --> DB : 8. salvar lista de compras
+Shopping --> Controller : 9. lista criada
+Controller --> Web : 10. resposta 201
+Web --> Usuario : 11. exibe lista de compras
+@enduml

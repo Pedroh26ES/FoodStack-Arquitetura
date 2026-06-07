@@ -1,0 +1,34 @@
+@startuml
+title FoodStack - Atividade: Rotina de Alerta de Vencimento
+
+skinparam shadowing false
+skinparam activity {
+  BackgroundColor #F6F7F9
+  BorderColor #0B2545
+  ArrowColor #0B2545
+}
+
+start
+:Iniciar rotina diária às 08:00;
+:Consultar itens disponíveis com validade informada;
+
+if (Item está vencido?) then (sim)
+  :Marcar status como VENCIDO;
+  :Criar notificação de item vencido;
+else (não)
+  if (Validade em até 5 dias?) then (sim)
+    :Marcar status como PROXIMO_VENCIMENTO;
+    if (Alerta já enviado hoje?) then (sim)
+      :Ignorar para evitar duplicidade;
+    else (não)
+      :Criar notificação preventiva;
+      :Enviar e-mail ou push;
+    endif
+  else (não)
+    :Manter status DISPONIVEL;
+  endif
+endif
+
+:Registrar execução da rotina;
+stop
+@enduml

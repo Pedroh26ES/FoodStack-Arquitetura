@@ -1,0 +1,181 @@
+@startuml
+title FoodStack - Modelo de Dados Relacional
+
+hide circle
+skinparam shadowing false
+skinparam linetype ortho
+skinparam entity {
+  BackgroundColor #F6F7F9
+  BorderColor #0B2545
+}
+
+entity "usuarios" as usuarios {
+  * id : uuid <<PK>>
+  --
+  nome : varchar(120)
+  email : varchar(180) <<UK>>
+  senha_hash : varchar(255)
+  criado_em : timestamp
+}
+
+entity "despensas" as despensas {
+  * id : uuid <<PK>>
+  --
+  dono_id : uuid <<FK>>
+  nome : varchar(120)
+  criada_em : timestamp
+}
+
+entity "membros_despensa" as membros {
+  * id : uuid <<PK>>
+  --
+  usuario_id : uuid <<FK>>
+  despensa_id : uuid <<FK>>
+  papel : varchar(20)
+  ativo : boolean
+  aceito_em : timestamp
+}
+
+entity "convites_compartilhamento" as convites {
+  * id : uuid <<PK>>
+  --
+  despensa_id : uuid <<FK>>
+  email_convidado : varchar(180)
+  token : varchar(128)
+  papel : varchar(20)
+  expira_em : timestamp
+  aceito_em : timestamp
+}
+
+entity "ingredientes" as ingredientes {
+  * id : uuid <<PK>>
+  --
+  nome : varchar(120)
+  nome_normalizado : varchar(120)
+  categoria : varchar(80)
+}
+
+entity "itens_despensa" as itens {
+  * id : uuid <<PK>>
+  --
+  despensa_id : uuid <<FK>>
+  ingrediente_id : uuid <<FK>>
+  quantidade : numeric(10,2)
+  unidade : varchar(20)
+  validade : date
+  local_armazenamento : varchar(30)
+  status : varchar(30)
+  criado_em : timestamp
+  atualizado_em : timestamp
+}
+
+entity "historico_estoque" as historico {
+  * id : uuid <<PK>>
+  --
+  item_despensa_id : uuid <<FK>>
+  usuario_id : uuid <<FK>>
+  tipo : varchar(30)
+  quantidade_anterior : numeric(10,2)
+  quantidade_nova : numeric(10,2)
+  motivo : varchar(255)
+  criado_em : timestamp
+}
+
+entity "receitas" as receitas {
+  * id : uuid <<PK>>
+  --
+  criador_id : uuid <<FK>>
+  nome : varchar(160)
+  descricao : text
+  modo_preparo : text
+  porcoes_base : int
+  publica : boolean
+}
+
+entity "ingredientes_receita" as ing_receita {
+  * id : uuid <<PK>>
+  --
+  receita_id : uuid <<FK>>
+  ingrediente_id : uuid <<FK>>
+  quantidade : numeric(10,2)
+  unidade : varchar(20)
+  obrigatorio : boolean
+}
+
+entity "restricoes_alimentares" as restricoes {
+  * id : uuid <<PK>>
+  --
+  nome : varchar(80)
+  descricao : text
+}
+
+entity "receita_restricao" as receita_restricao {
+  * receita_id : uuid <<FK>>
+  * restricao_id : uuid <<FK>>
+}
+
+entity "favoritos_receita" as favoritos {
+  * id : uuid <<PK>>
+  --
+  usuario_id : uuid <<FK>>
+  receita_id : uuid <<FK>>
+  criado_em : timestamp
+}
+
+entity "listas_compras" as listas {
+  * id : uuid <<PK>>
+  --
+  usuario_id : uuid <<FK>>
+  despensa_id : uuid <<FK>>
+  receita_id : uuid <<FK>>
+  nome : varchar(160)
+  status : varchar(30)
+  criada_em : timestamp
+}
+
+entity "itens_lista_compras" as itens_lista {
+  * id : uuid <<PK>>
+  --
+  lista_id : uuid <<FK>>
+  ingrediente_id : uuid <<FK>>
+  nome_ingrediente : varchar(120)
+  quantidade : numeric(10,2)
+  unidade : varchar(20)
+  comprado : boolean
+}
+
+entity "notificacoes" as notificacoes {
+  * id : uuid <<PK>>
+  --
+  usuario_id : uuid <<FK>>
+  item_despensa_id : uuid <<FK>>
+  tipo : varchar(30)
+  titulo : varchar(160)
+  mensagem : text
+  lida : boolean
+  enviada_em : timestamp
+}
+
+usuarios ||--o{ despensas : dono
+usuarios ||--o{ membros : participa
+despensas ||--o{ membros : membros
+despensas ||--o{ convites : convites
+despensas ||--o{ itens : estoque
+ingredientes ||--o{ itens : item
+itens ||--o{ historico : movimentos
+usuarios ||--o{ historico : realizou
+usuarios ||--o{ receitas : cria
+receitas ||--o{ ing_receita : ingredientes
+ingredientes ||--o{ ing_receita : usado_em
+receitas ||--o{ receita_restricao
+restricoes ||--o{ receita_restricao
+usuarios ||--o{ favoritos
+receitas ||--o{ favoritos
+usuarios ||--o{ listas
+despensas ||--o{ listas
+receitas ||--o{ listas
+listas ||--o{ itens_lista
+ingredientes ||--o{ itens_lista
+usuarios ||--o{ notificacoes
+itens ||--o{ notificacoes
+@enduml

@@ -1,0 +1,23 @@
+# Sistemas operacionais
+.DS_Store
+Thumbs.db
+
+# IDEs
+.idea/
+.vscode/
+
+# Dependencias e builds futuros
+node_modules/
+target/
+dist/
+build/
+
+# Variaveis sensiveis
+.env
+.env.local
+.env.*.local
+
+# Temporarios
+*.tmp
+*.log
+*.bak

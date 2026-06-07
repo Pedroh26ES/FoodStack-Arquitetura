@@ -1,0 +1,62 @@
+@startuml
+title FoodStack - Diagrama de Implantação Planejado
+
+skinparam shadowing false
+skinparam defaultFontName Arial
+skinparam node {
+  BackgroundColor #F6F7F9
+  BorderColor #0B2545
+}
+skinparam database {
+  BackgroundColor #F6F7F9
+  BorderColor #0B2545
+}
+skinparam cloud {
+  BackgroundColor #F6F7F9
+  BorderColor #0B2545
+}
+skinparam ArrowColor #0B2545
+
+node "Dispositivo do Usuário" as Device {
+  artifact "Navegador Web" as Browser
+  artifact "App Mobile" as App
+}
+
+cloud "Vercel" as Vercel {
+  node "CDN + Edge" as CDN
+  artifact "FoodStack Web\nReact/Vite" as Web
+}
+
+cloud "AWS" as AWS {
+  node "ECS Fargate" as ECS {
+    artifact "API FoodStack\nSpring Boot" as API
+  }
+  database "RDS PostgreSQL" as RDS
+  database "ElastiCache Redis" as Redis
+  queue "Amazon MQ / RabbitMQ" as MQ
+  node "CloudWatch" as Logs
+}
+
+cloud "Firebase" as Firebase {
+  artifact "Cloud Messaging" as FCM
+}
+
+cloud "Amazon SES" as SES
+
+node "GitHub Actions" as Actions {
+  artifact "Pipeline CI/CD" as Pipeline
+}
+
+Browser --> CDN : HTTPS
+App --> API : HTTPS
+CDN --> Web
+Web --> API : REST/JSON
+API --> RDS : JDBC/TLS
+API --> Redis : cache
+API --> MQ : eventos
+API --> FCM : push
+API --> SES : e-mail
+API --> Logs : logs e métricas
+Pipeline --> Vercel : deploy front-end
+Pipeline --> ECS : deploy imagem Docker
+@enduml

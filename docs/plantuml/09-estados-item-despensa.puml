@@ -1,0 +1,33 @@
+@startuml
+title FoodStack - Estados do Item de Despensa
+
+skinparam shadowing false
+skinparam state {
+  BackgroundColor #F6F7F9
+  BorderColor #0B2545
+  ArrowColor #0B2545
+}
+
+[*] --> Cadastrado
+Cadastrado --> Disponivel : quantidade > 0
+Disponivel --> ProximoVencimento : validade em até 5 dias
+ProximoVencimento --> Vencido : data atual > validade
+Disponivel --> Consumido : quantidade chega a 0\npor preparo
+ProximoVencimento --> Consumido : baixa por receita
+Vencido --> Removido : descarte confirmado
+Disponivel --> Removido : exclusão manual
+ProximoVencimento --> Removido : exclusão manual
+Consumido --> [*]
+Removido --> [*]
+
+Disponivel --> Disponivel : editar quantidade/local
+ProximoVencimento --> Disponivel : validade alterada\npara data futura
+Vencido --> Disponivel : validade corrigida\ncom confirmação
+
+state Cadastrado
+state Disponivel
+state ProximoVencimento as "Próximo do vencimento"
+state Vencido
+state Consumido
+state Removido
+@enduml

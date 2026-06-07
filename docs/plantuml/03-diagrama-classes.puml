@@ -1,0 +1,184 @@
+@startuml
+title FoodStack - Diagrama de Classes
+
+skinparam shadowing false
+skinparam classAttributeIconSize 0
+skinparam defaultFontName Arial
+skinparam class {
+  BackgroundColor #F6F7F9
+  BorderColor #0B2545
+  ArrowColor #0B2545
+}
+
+class Usuario {
+  +id: UUID
+  +nome: String
+  +email: String
+  +senhaHash: String
+  +criadoEm: DateTime
+  +autenticar(senha: String): Boolean
+}
+
+class Despensa {
+  +id: UUID
+  +nome: String
+  +criadaEm: DateTime
+  +adicionarItem(item: ItemDespensa)
+  +removerItem(itemId: UUID)
+}
+
+class MembroDespensa {
+  +id: UUID
+  +papel: PapelMembro
+  +ativo: Boolean
+  +aceitoEm: DateTime
+}
+
+class ConviteCompartilhamento {
+  +id: UUID
+  +emailConvidado: String
+  +token: String
+  +papel: PapelMembro
+  +expiraEm: DateTime
+  +aceitar()
+  +expirado(): Boolean
+}
+
+class Ingrediente {
+  +id: UUID
+  +nome: String
+  +nomeNormalizado: String
+  +categoria: String
+}
+
+class ItemDespensa {
+  +id: UUID
+  +quantidade: Decimal
+  +unidade: UnidadeMedida
+  +validade: LocalDate
+  +local: LocalArmazenamento
+  +status: StatusItem
+  +baixar(qtd: Decimal)
+  +estaProximoVencimento(hoje: LocalDate): Boolean
+}
+
+class HistoricoEstoque {
+  +id: UUID
+  +tipo: TipoMovimento
+  +quantidadeAnterior: Decimal
+  +quantidadeNova: Decimal
+  +motivo: String
+  +criadoEm: DateTime
+}
+
+class Receita {
+  +id: UUID
+  +nome: String
+  +descricao: String
+  +modoPreparo: String
+  +porcoesBase: Integer
+  +publica: Boolean
+  +calcularCompatibilidade(despensa: Despensa): ResultadoSugestao
+}
+
+class IngredienteReceita {
+  +id: UUID
+  +quantidade: Decimal
+  +unidade: UnidadeMedida
+  +obrigatorio: Boolean
+}
+
+class RestricaoAlimentar {
+  +id: UUID
+  +nome: String
+  +descricao: String
+}
+
+class FavoritoReceita {
+  +id: UUID
+  +criadoEm: DateTime
+}
+
+class ResultadoSugestao {
+  +compatibilidade: Decimal
+  +prioridadeVencimento: Decimal
+  +ingredientesFaltantes: List<ItemFaltante>
+  +justificativa: String
+}
+
+class ListaCompras {
+  +id: UUID
+  +nome: String
+  +status: StatusLista
+  +criadaEm: DateTime
+  +marcarItemComprado(itemId: UUID)
+}
+
+class ItemListaCompras {
+  +id: UUID
+  +nomeIngrediente: String
+  +quantidade: Decimal
+  +unidade: UnidadeMedida
+  +comprado: Boolean
+}
+
+class Notificacao {
+  +id: UUID
+  +tipo: TipoNotificacao
+  +titulo: String
+  +mensagem: String
+  +lida: Boolean
+  +enviadaEm: DateTime
+}
+
+enum PapelMembro {
+  DONO
+  EDITOR
+  LEITOR
+}
+
+enum LocalArmazenamento {
+  GELADEIRA
+  CONGELADOR
+  ARMARIO
+  DESPENSA
+}
+
+enum StatusItem {
+  DISPONIVEL
+  PROXIMO_VENCIMENTO
+  VENCIDO
+  CONSUMIDO
+  REMOVIDO
+}
+
+enum UnidadeMedida {
+  UNIDADE
+  GRAMA
+  KG
+  ML
+  LITRO
+  PORCAO
+}
+
+Usuario "1" -- "0..*" Despensa : possui >
+Usuario "1" -- "0..*" MembroDespensa
+Despensa "1" -- "1..*" MembroDespensa
+Despensa "1" o-- "0..*" ItemDespensa
+Despensa "1" o-- "0..*" ConviteCompartilhamento
+Despensa "1" o-- "0..*" HistoricoEstoque
+Ingrediente "1" -- "0..*" ItemDespensa
+Usuario "1" -- "0..*" Receita : cria >
+Receita "1" o-- "1..*" IngredienteReceita
+Ingrediente "1" -- "0..*" IngredienteReceita
+Receita "0..*" -- "0..*" RestricaoAlimentar
+Usuario "1" -- "0..*" FavoritoReceita
+Receita "1" -- "0..*" FavoritoReceita
+Receita "1" -- "0..*" ResultadoSugestao
+Despensa "1" -- "0..*" ResultadoSugestao
+ListaCompras "1" o-- "1..*" ItemListaCompras
+Usuario "1" -- "0..*" ListaCompras
+Receita "1" -- "0..*" ListaCompras
+Usuario "1" -- "0..*" Notificacao
+ItemDespensa "1" -- "0..*" Notificacao
+@enduml

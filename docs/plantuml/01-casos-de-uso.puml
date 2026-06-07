@@ -1,0 +1,77 @@
+@startuml
+title FoodStack - Diagrama de Casos de Uso
+
+left to right direction
+skinparam packageStyle rectangle
+skinparam shadowing false
+skinparam actorStyle awesome
+skinparam usecase {
+  BackgroundColor #F6F7F9
+  BorderColor #0B2545
+  ArrowColor #0B2545
+}
+
+actor "Usuário" as Usuario
+actor "Membro da Família" as Membro
+actor "Serviço de Notificação" as Notificacao
+actor "Catálogo de Receitas" as Catalogo
+
+rectangle "FoodStack" {
+  usecase "UC-01\nCadastrar ingrediente" as UC01
+  usecase "UC-02\nRegistrar validade" as UC02
+  usecase "UC-03\nReceber alerta de vencimento" as UC03
+  usecase "UC-04\nConsultar estoque atual" as UC04
+  usecase "UC-05\nClassificar armazenamento" as UC05
+  usecase "UC-06\nEditar ou excluir ingrediente" as UC06
+  usecase "UC-07\nSugerir receitas por estoque" as UC07
+  usecase "UC-08\nPriorizar itens perto do vencimento" as UC08
+  usecase "UC-09\nMarcar receita como preparada" as UC09
+  usecase "UC-10\nFiltrar por restrição alimentar" as UC10
+  usecase "UC-11\nFavoritar receita" as UC11
+  usecase "UC-12\nGerar lista de compras" as UC12
+  usecase "UC-13\nCadastrar receita própria" as UC13
+  usecase "UC-14\nCompartilhar despensa" as UC14
+  usecase "Validar permissões" as UC15
+  usecase "Calcular compatibilidade" as UC16
+}
+
+Usuario --> UC01
+Usuario --> UC02
+Usuario --> UC03
+Usuario --> UC04
+Usuario --> UC05
+Usuario --> UC06
+Usuario --> UC07
+Usuario --> UC08
+Usuario --> UC09
+Usuario --> UC10
+Usuario --> UC11
+Usuario --> UC12
+Usuario --> UC13
+Usuario --> UC14
+
+Membro --> UC04
+Membro --> UC01
+Membro --> UC06
+Membro --> UC09
+
+Notificacao --> UC03
+Catalogo --> UC07
+Catalogo --> UC13
+
+UC02 ..> UC01 : <<extend>>
+UC05 ..> UC01 : <<include>>
+UC06 ..> UC15 : <<include>>
+UC07 ..> UC16 : <<include>>
+UC08 ..> UC07 : <<extend>>
+UC10 ..> UC07 : <<extend>>
+UC09 ..> UC15 : <<include>>
+UC12 ..> UC16 : <<include>>
+UC14 ..> UC15 : <<include>>
+
+note right of UC09
+  A baixa automática deve ser
+  transacional para manter
+  consistência do estoque.
+end note
+@enduml

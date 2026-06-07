@@ -1,0 +1,98 @@
+@startuml
+title FoodStack - Diagrama de Componentes
+
+skinparam shadowing false
+skinparam componentStyle rectangle
+skinparam packageStyle rectangle
+skinparam defaultFontName Arial
+skinparam ArrowColor #0B2545
+skinparam component {
+  BackgroundColor #F6F7F9
+  BorderColor #0B2545
+}
+
+actor "Usuário" as User
+
+node "Cliente" {
+  component "Web App\nReact + Vite" as Web
+  component "Mobile App\nReact Native" as Mobile
+}
+
+package "API FoodStack\nSpring Boot" as API {
+  component "Auth Controller" as AuthController
+  component "Pantry Controller" as PantryController
+  component "Recipe Controller" as RecipeController
+  component "Shopping Controller" as ShoppingController
+
+  package "Camada de Aplicação" {
+    component "Auth Service" as AuthService
+    component "Pantry Service" as PantryService
+    component "Recipe Service" as RecipeService
+    component "Suggestion Service" as SuggestionService
+    component "Shopping List Service" as ShoppingService
+    component "Sharing Service" as SharingService
+    component "Notification Service" as NotificationService
+  }
+
+  package "Domínio" {
+    component "Regras de Estoque" as StockPolicy
+    component "Politica de Validade" as ExpiryPolicy
+    component "Motor de Compatibilidade" as MatchEngine
+    component "Politica de Permissões" as PermissionPolicy
+  }
+
+  package "Infraestrutura" {
+    component "JPA Repositories" as Repos
+    component "Event Publisher" as Events
+    component "OpenAPI Adapter" as OpenAPI
+  }
+}
+
+database "PostgreSQL\nFoodStack DB" as DB
+database "Redis\nCache" as Redis
+queue "RabbitMQ\nEventos" as MQ
+cloud "Firebase Cloud Messaging" as FCM
+cloud "Amazon SES" as SES
+
+User --> Web
+User --> Mobile
+Web --> AuthController : HTTPS/JSON
+Web --> PantryController : HTTPS/JSON
+Web --> RecipeController : HTTPS/JSON
+Web --> ShoppingController : HTTPS/JSON
+Mobile --> AuthController : HTTPS/JSON
+Mobile --> PantryController : HTTPS/JSON
+
+AuthController --> AuthService
+PantryController --> PantryService
+RecipeController --> RecipeService
+RecipeController --> SuggestionService
+ShoppingController --> ShoppingService
+
+AuthService --> PermissionPolicy
+PantryService --> StockPolicy
+PantryService --> ExpiryPolicy
+RecipeService --> MatchEngine
+SuggestionService --> MatchEngine
+SuggestionService --> ExpiryPolicy
+ShoppingService --> MatchEngine
+SharingService --> PermissionPolicy
+
+AuthService --> Repos
+PantryService --> Repos
+RecipeService --> Repos
+ShoppingService --> Repos
+SharingService --> Repos
+
+Repos --> DB
+SuggestionService --> Redis
+Events --> MQ
+NotificationService --> FCM
+NotificationService --> SES
+MQ --> NotificationService : eventos de validade
+
+OpenAPI .. AuthController
+OpenAPI .. PantryController
+OpenAPI .. RecipeController
+OpenAPI .. ShoppingController
+@enduml

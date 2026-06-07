@@ -1,0 +1,52 @@
+@startuml
+title FoodStack - Sequencia: Compartilhar Despensa
+
+skinparam shadowing false
+skinparam sequence {
+  ArrowColor #0B2545
+  LifeLineBorderColor #0B2545
+  ParticipantBorderColor #0B2545
+  ParticipantBackgroundColor #F6F7F9
+}
+
+actor "Dono da despensa" as Dono
+actor "Membro convidado" as Membro
+participant "Front-end" as FE
+participant "SharingController" as SC
+participant "SharingService" as SS
+participant "PermissionPolicy" as Perm
+database "PostgreSQL" as DB
+participant "NotificationService" as NS
+participant "Servico de E-mail" as Email
+
+Dono -> FE : Informa e-mail e papel
+FE -> SC : POST /api/despensas/{id}/convites
+SC -> SS : convidarMembro(despensaId, email, papel)
+SS -> Perm : validarDono(usuario, despensa)
+Perm --> SS : autorizado
+SS -> DB : criar convite com token e expiração
+DB --> SS : convite criado
+SS -> NS : enviarConvite(email, token)
+NS -> Email : mensagem de convite
+SS --> SC : convite pendente
+SC --> FE : 201 Created
+FE --> Dono : Convite enviado
+
+Membro -> FE : Acessa link do convite
+FE -> SC : POST /api/convites/{token}/aceite
+SC -> SS : aceitarConvite(token, usuario)
+SS -> DB : buscar convite válido
+DB --> SS : convite
+
+alt convite válido
+  SS -> DB : criar membro da despensa
+  SS -> DB : marcar convite como aceito
+  SS --> SC : acesso concedido
+  SC --> FE : 200 OK
+  FE --> Membro : Despensa compartilhada disponível
+else convite expirado ou inválido
+  SS --> SC : convite inválido
+  SC --> FE : 410 Gone
+  FE --> Membro : Solicitar novo convite
+end
+@enduml
