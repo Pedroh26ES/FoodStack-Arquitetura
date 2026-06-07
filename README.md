@@ -1,7 +1,7 @@
 # 🍽️ FoodStack
 
 <p align="center">
-  <img src="assets/readme/banner_topo_logo_foodstack.png" alt="Banner conceitual FoodStack" width="88%"/>
+  <img src="assets/readme/foodstack_logo_animado_v4.svg" alt="Header animado FoodStack" width="88%"/>
 </p>
 
 > **Despensa virtual e motor de recomendação de receitas** baseado em estoque doméstico, validade de alimentos, restrições alimentares e compartilhamento familiar.
@@ -520,11 +520,13 @@ foodstack/
 │   ├── logo-foodstack.png
 │   └── readme/
 │       ├── banner_topo_logo_foodstack.png
+│       ├── foodstack_logo_animado_v4.svg
 │       ├── problema_solucao.png
 │       ├── visao_geral_solucao.png
 │       ├── mapa_modulos.png
 │       ├── todos_diagramas.png
-│       └── final_encerramento.png
+│       ├── final_encerramento.png
+│       └── foodstack_encerramento_animado.svg
 └── docs/
     ├── diagramas/
     │   ├── 01-casos-de-uso.png
@@ -593,7 +595,7 @@ foodstack/
 ## 🏁 Encerramento
 
 <p align="center">
-  <img src="assets/readme/final_encerramento.png" alt="Card final de encerramento do FoodStack" width="100%"/>
+  <img src="assets/readme/foodstack_encerramento_animado.svg" alt="Encerramento animado FoodStack" width="100%"/>
 </p>
 
 ---
