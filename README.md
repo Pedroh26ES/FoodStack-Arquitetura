@@ -1,5 +1,9 @@
 # 🍽️ FoodStack
 
+<p align="center">
+  <img src="assets/readme/banner_topo_logo_foodstack.png" alt="Banner conceitual FoodStack" width="100%"/>
+</p>
+
 > **Despensa virtual e motor de recomendação de receitas** baseado em estoque doméstico, validade de alimentos, restrições alimentares e compartilhamento familiar.
 
 <p align="center">
@@ -35,6 +39,7 @@
 |---|---|
 | 📌 Escopo da entrega | [Escopo](#-escopo-da-entrega) |
 | 🧩 Resumo técnico | [Resumo técnico](#-resumo-técnico) |
+| 🖼️ Visuais do projeto | [Problema x Solução](#problema-solucao) |
 | ✅ Requisitos funcionais | [Requisitos funcionais](#-requisitos-funcionais) |
 | 🛡️ Requisitos não funcionais | [Requisitos não funcionais](#️-requisitos-não-funcionais) |
 | 📐 Regras de negócio | [Regras de negócio](#-regras-de-negócio) |
@@ -75,9 +80,19 @@ Assim, o projeto possui exatamente **9 diagramas UML/arquiteturais**:
 | Modelo de dados / DER | 1 |
 | Sequência | 1 |
 | Atividade | 1 |
-| Estados | 1 |
+| Transição de Estados | 1 |
 | Comunicação | 1 |
 | Implantação | 1 |
+
+---
+
+<a id="problema-solucao"></a>
+
+## 🖼️ Problema x Solução
+
+<p align="center">
+  <img src="assets/readme/problema_solucao.png" alt="Infográfico Problema x Solução do FoodStack" width="100%"/>
+</p>
 
 ---
 
@@ -101,6 +116,10 @@ Uma despensa virtual compartilhável que:
 - baixa automaticamente o estoque após preparo;
 - gera lista de compras com faltantes;
 - permite colaboração entre membros da família.
+
+<p align="center">
+  <img src="assets/readme/visao_geral_solucao.png" alt="Visão geral da solução FoodStack" width="100%"/>
+</p>
 
 ### 💼 Valor entregue
 
@@ -269,6 +288,10 @@ Uma despensa virtual compartilhável que:
 
 O FoodStack foi projetado como um **monólito modular orientado a domínio**, separando interface, aplicação, domínio e infraestrutura.
 
+<p align="center">
+  <img src="assets/readme/mapa_modulos.png" alt="Mapa dos módulos do FoodStack" width="100%"/>
+</p>
+
 ### Decisão arquitetural
 
 | Decisão | Justificativa |
@@ -374,6 +397,14 @@ O FoodStack foi projetado como um **monólito modular orientado a domínio**, se
 | E-mail | Amazon SES |
 | Push | Firebase Cloud Messaging |
 | CI/CD | GitHub Actions |
+
+---
+
+## 🧭 Infográfico dos diagramas
+
+<p align="center">
+  <img src="assets/readme/todos_diagramas.png" alt="Infográfico dos 9 diagramas UML e arquiteturais do FoodStack" width="100%"/>
+</p>
 
 ---
 
@@ -509,7 +540,14 @@ foodstack/
 ├── .gitignore
 ├── assets/
 │   ├── logo-foodstack.svg
-│   └── logo-foodstack.png
+│   ├── logo-foodstack.png
+│   └── readme/
+│       ├── banner_topo_logo_foodstack.png
+│       ├── problema_solucao.png
+│       ├── visao_geral_solucao.png
+│       ├── mapa_modulos.png
+│       ├── todos_diagramas.png
+│       └── final_encerramento.png
 └── docs/
     ├── diagramas/
     │   ├── 01-casos-de-uso.png
@@ -543,6 +581,7 @@ foodstack/
 | Um diagrama por tipo | OK |
 | 9 arquivos `.puml` versionados | OK |
 | 9 imagens `.png` renderizadas no README | OK |
+| 6 imagens visuais de apoio no README | OK |
 | PlantUML renderiza sem erro de sintaxe | OK |
 | Código de aplicação ausente | OK |
 | Requisitos, regras, contratos, arquitetura e rastreabilidade documentados | OK |
@@ -571,6 +610,14 @@ foodstack/
 | Entrega | README único + PlantUML + imagens renderizadas |
 | Versão | 1.0.0 |
 | Data | 07/06/2026 |
+
+---
+
+## 🏁 Encerramento
+
+<p align="center">
+  <img src="assets/readme/final_encerramento.png" alt="Card final de encerramento do FoodStack" width="100%"/>
+</p>
 
 ---
 
