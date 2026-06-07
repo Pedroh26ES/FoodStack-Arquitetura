@@ -1,33 +1,94 @@
 @startuml
-title FoodStack - Estados do Item de Despensa
-
+skinparam StateBackgroundColor LightBlue
+skinparam StateBorderColor DarkBlue
+skinparam ArrowColor DarkBlue
+skinparam StateEndColor DarkRed
+skinparam StateStartColor DarkGreen
+skinparam FontName Arial
 skinparam shadowing false
-skinparam state {
-  BackgroundColor #F6F7F9
-  BorderColor #0B2545
-  ArrowColor #0B2545
+
+title Diagrama de Transição de Estados\nFoodStack - Ciclo de Vida do Item de Despensa
+
+[*] --> ItemCadastrado : cadastrarIngrediente()\n/ registrar nome, quantidade, unidade e local
+
+state "Item cadastrado" as ItemCadastrado {
+  ItemCadastrado : status = "CADASTRADO"
+  ItemCadastrado : quantidadeInformada = true
+  ItemCadastrado : localArmazenamento definido
 }
 
-[*] --> Cadastrado
-Cadastrado --> Disponivel : quantidade > 0
-Disponivel --> ProximoVencimento : validade em até 5 dias
-ProximoVencimento --> Vencido : data atual > validade
-Disponivel --> Consumido : quantidade chega a 0\npor preparo
-ProximoVencimento --> Consumido : baixa por receita
-Vencido --> Removido : descarte confirmado
-Disponivel --> Removido : exclusão manual
-ProximoVencimento --> Removido : exclusão manual
-Consumido --> [*]
-Removido --> [*]
+' === LOSANGO 1: Validação inicial ===
+state ValidacaoInicial <<choice>>
 
-Disponivel --> Disponivel : editar quantidade/local
-ProximoVencimento --> Disponivel : validade alterada\npara data futura
-Vencido --> Disponivel : validade corrigida\ncom confirmação
+ItemCadastrado --> ValidacaoInicial : confirmarCadastro()\n/ normalizar unidade de medida
 
-state Cadastrado
-state Disponivel
-state ProximoVencimento as "Próximo do vencimento"
-state Vencido
-state Consumido
-state Removido
+ValidacaoInicial --> Disponivel : [quantidade > 0 and diasParaVencer > 5]\n/ status = "DISPONIVEL"
+ValidacaoInicial --> ProximoVencimento : [quantidade > 0 and 0 <= diasParaVencer <= 5]\n/ status = "PROXIMO_VENCIMENTO"
+ValidacaoInicial --> Vencido : [quantidade > 0 and diasParaVencer < 0]\n/ status = "VENCIDO"
+ValidacaoInicial --> Removido : [quantidade <= 0]\n/ motivo = "cadastro inválido"
+
+state "Disponível" as Disponivel {
+  Disponivel : status = "DISPONIVEL"
+  Disponivel : quantidadeAtual > 0
+  Disponivel : elegivelParaReceita = true
+}
+
+state "Próximo do vencimento" as ProximoVencimento {
+  ProximoVencimento : status = "PROXIMO_VENCIMENTO"
+  ProximoVencimento : diasParaVencer <= 5
+  ProximoVencimento : prioridadeSugestao = alta
+}
+
+state "Vencido" as Vencido {
+  Vencido : status = "VENCIDO"
+  Vencido : bloqueadoParaReceita = true
+}
+
+Disponivel --> ProximoVencimento : rotinaDiariaValidade()\n[diasParaVencer <= 5]\n/ gerar alerta preventivo
+ProximoVencimento --> Vencido : rotinaDiariaValidade()\n[diasParaVencer < 0]\n/ bloquear uso em receitas
+ProximoVencimento --> Disponivel : corrigirValidade(dataFutura)\n/ cancelar alerta preventivo
+
+state "Baixa em processamento" as BaixaProcessamento {
+  BaixaProcessamento : status = "EM_BAIXA"
+  BaixaProcessamento : quantidadeBaixada > 0
+}
+
+Disponivel --> BaixaProcessamento : receitaPreparada(receitaID)\n/ subtrair quantidade utilizada
+ProximoVencimento --> BaixaProcessamento : receitaPreparada(receitaID)\n/ subtrair quantidade utilizada
+
+' === LOSANGO 2: Resultado da baixa de estoque ===
+state VerificacaoSaldo <<choice>>
+
+BaixaProcessamento --> VerificacaoSaldo : baixaConcluida()\n/ registrar histórico de estoque
+
+VerificacaoSaldo --> Disponivel : [quantidadeAtual > 0 and diasParaVencer > 5]\n/ status = "DISPONIVEL"
+VerificacaoSaldo --> ProximoVencimento : [quantidadeAtual > 0 and 0 <= diasParaVencer <= 5]\n/ status = "PROXIMO_VENCIMENTO"
+VerificacaoSaldo --> Consumido : [quantidadeAtual == 0]\n/ status = "CONSUMIDO"
+
+state "Consumido" as Consumido {
+  Consumido : status = "CONSUMIDO"
+  Consumido : quantidadeAtual = 0
+}
+
+state "Removido" as Removido {
+  Removido : status = "REMOVIDO"
+  Removido : itemOcultoDoEstoque = true
+}
+
+Disponivel --> Removido : exclusaoManualConfirmada()\n/ registrar motivo
+ProximoVencimento --> Removido : descartePreventivo()\n/ registrar motivo
+Vencido --> Removido : descarteItemVencido()\n/ registrar motivo
+
+Consumido --> [*] : ciclo encerrado por consumo total
+Removido --> [*] : ciclo encerrado por remoção
+
+' === LEGENDA DE GUARDS CONDICIONAIS ===
+note right of ValidacaoInicial
+  **Guards principais:**
+  [quantidade <= 0] → Removido
+  [diasParaVencer > 5] → Disponível
+  [0 <= diasParaVencer <= 5] → Próximo do vencimento
+  [diasParaVencer < 0] → Vencido
+  [quantidadeAtual == 0] → Consumido
+end note
 @enduml

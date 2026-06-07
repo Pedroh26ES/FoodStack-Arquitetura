@@ -431,12 +431,12 @@ O FoodStack foi projetado como um **monólito modular orientado a domínio**, se
   <img src="docs/diagramas/06-diagrama-atividade-alerta-vencimento.png" alt="Diagrama de Atividade" width="760"/>
 </p>
 
-### 07 - Estados
+### 07 - Transição de Estados
 
 [Código PlantUML](docs/plantuml/07-diagrama-estados-item-despensa.puml)
 
 <p align="center">
-  <img src="docs/diagramas/07-diagrama-estados-item-despensa.png" alt="Diagrama de Estados" width="700"/>
+  <img src="docs/diagramas/07-diagrama-estados-item-despensa.png" alt="Diagrama de Transição de Estados" width="820"/>
 </p>
 
 ### 08 - Comunicação
@@ -467,7 +467,7 @@ O FoodStack foi projetado como um **monólito modular orientado a domínio**, se
 | [`04-modelo-dados-der.puml`](docs/plantuml/04-modelo-dados-der.puml) | Modelo de dados |
 | [`05-diagrama-sequencia.puml`](docs/plantuml/05-diagrama-sequencia.puml) | Sequência |
 | [`06-diagrama-atividade-alerta-vencimento.puml`](docs/plantuml/06-diagrama-atividade-alerta-vencimento.puml) | Atividade |
-| [`07-diagrama-estados-item-despensa.puml`](docs/plantuml/07-diagrama-estados-item-despensa.puml) | Estados |
+| [`07-diagrama-estados-item-despensa.puml`](docs/plantuml/07-diagrama-estados-item-despensa.puml) | Transição de Estados |
 | [`08-diagrama-comunicacao-lista-compras.puml`](docs/plantuml/08-diagrama-comunicacao-lista-compras.puml) | Comunicação |
 | [`09-diagrama-implantacao.puml`](docs/plantuml/09-diagrama-implantacao.puml) | Implantação |
 
