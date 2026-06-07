@@ -2,32 +2,35 @@
 title FoodStack - Diagrama de Comunicação: Gerar Lista de Compras
 
 skinparam shadowing false
+skinparam defaultFontName Arial
+skinparam ArrowColor Black
+skinparam linetype ortho
+skinparam nodesep 260
+skinparam ranksep 180
 skinparam object {
-  BackgroundColor #F6F7F9
-  BorderColor #0B2545
+  BackgroundColor #FFF8CC
+  BorderColor Black
 }
-skinparam ArrowColor #0B2545
 
-object "usuario:Usuario" as Usuario
-object "web:FrontEnd" as Web
-object "shoppingController:ShoppingController" as Controller
-object "shoppingService:ShoppingListService" as Shopping
-object "pantryService:PantryService" as Pantry
-object "recipeRepository:RecipeRepository" as RecipeRepo
-object "matchEngine:MatchEngine" as Match
-object "db:PostgreSQL" as DB
+object "Usuario" as Usuario
+object "SistemaFoodStack" as Sistema
+object "BancoDeDados" as Banco
+object "Receita" as Receita
+object "Estoque" as Estoque
+object "ListaCompras" as Lista
+object "Notificacao" as Notificacao
 
-Usuario --> Web : 1. escolhe receita
-Web --> Controller : 2. gerarListaCompras(receitaId, porcoes)
-Controller --> Shopping : 3. gerarLista(despensaId, receitaId)
-Shopping --> Pantry : 4. consultarEstoque(despensaId)
-Pantry --> DB : 4.1 buscar itens disponíveis
-Shopping --> RecipeRepo : 5. buscarReceita(receitaId)
-RecipeRepo --> DB : 5.1 buscar ingredientes da receita
-Shopping --> Match : 6. calcularFaltantes(receita, estoque)
-Match --> Shopping : 7. itens faltantes e quantidades
-Shopping --> DB : 8. salvar lista de compras
-Shopping --> Controller : 9. lista criada
-Controller --> Web : 10. resposta 201
-Web --> Usuario : 11. exibe lista de compras
+Notificacao -[hidden]down- Sistema
+Usuario -[hidden]right- Sistema
+Sistema -[hidden]right- Banco
+Receita -[hidden]right- Estoque
+Estoque -[hidden]right- Lista
+Sistema -[hidden]down- Receita
+
+Usuario -right-> Sistema : 1: solicitarLista(receitaID)\n6: exibirLista(itens)
+Sistema -right-> Banco : 1.1: buscarReceita()\n1.1.1: receita()\n2.2: buscarEstoque()\n2.2.1: estoque()\n4: salvarLista()\n4.1: listaID()
+Sistema -down-> Receita : 1.2: getIngredientes()\n1.2.1: ingredientes()
+Sistema --> Estoque : 2: consultarDisponibilidade()\n2.1: itensDisponiveis()
+Sistema --> Lista : 3: calcularFaltantes()\n3.1: listaCalculada()
+Sistema -up-> Notificacao : 5: registrarEvento()\n5.1: eventoRegistrado()
 @enduml

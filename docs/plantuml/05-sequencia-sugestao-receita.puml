@@ -1,50 +1,45 @@
 @startuml
-title FoodStack - Sequencia: Sugestao de Receita
+title FoodStack - Diagrama de Sequência: Sugestão de Receita
 
 skinparam shadowing false
+skinparam defaultFontName Arial
 skinparam sequence {
-  ArrowColor #0B2545
-  LifeLineBorderColor #0B2545
-  ParticipantBorderColor #0B2545
-  ParticipantBackgroundColor #F6F7F9
+  ArrowColor Black
+  LifeLineBorderColor Black
+  ParticipantBorderColor Black
+  ParticipantBackgroundColor #F2F2FF
+  ActorBorderColor Black
+  ActorBackgroundColor White
+  DatabaseBorderColor Black
+  DatabaseBackgroundColor White
 }
 
-actor "Usuário" as U
-participant "Front-end" as FE
-participant "RecipeController" as RC
-participant "SuggestionService" as SS
-participant "PantryService" as PS
-participant "RecipeRepository" as RR
-participant "ExpiryPolicy" as EP
-participant "MatchEngine" as ME
-database "PostgreSQL" as DB
+actor "Usuário" as Usuario
+participant "Sistema" as Sistema
+database "BancoDeDados" as BancoDeDados
 
-U -> FE : Solicita sugestões\n(restrições, priorizar vencimento)
-FE -> RC : GET /api/despensas/{id}/sugestoes
-RC -> SS : sugerirReceitas(despensaId, filtros)
-SS -> PS : listarItensDisponiveis(despensaId)
-PS -> DB : consultar itens da despensa
-DB --> PS : itens disponíveis
-PS --> SS : itens disponíveis
+Usuario -> Sistema : abrirSugestoes(despensaID, filtros)
+activate Sistema
+Sistema -> BancoDeDados : buscarDespensa(despensaID)
+activate BancoDeDados
+BancoDeDados --> Sistema : dadosDespensa
+deactivate BancoDeDados
 
-SS -> RR : buscarReceitasCandidatas(filtros)
-RR -> DB : consultar receitas e ingredientes
-DB --> RR : receitas candidatas
-RR --> SS : receitas candidatas
+Sistema -> BancoDeDados : buscarItensDisponiveis(despensaID)
+activate BancoDeDados
+BancoDeDados --> Sistema : itensDisponiveis
+deactivate BancoDeDados
 
-loop para cada receita
-  SS -> EP : identificarItensPrioritarios(itens)
-  EP --> SS : itens próximos do vencimento
-  SS -> ME : calcularCompatibilidade(receita, itens, prioridades)
-  ME --> SS : score, faltantes e justificativa
-end
+Sistema -> BancoDeDados : buscarReceitasCandidatas(filtros)
+activate BancoDeDados
+BancoDeDados --> Sistema : receitasCandidatas
+deactivate BancoDeDados
 
-alt restrições alimentares informadas
-  SS -> SS : remover receitas incompatíveis
-end
+Sistema -> Sistema : calcularCompatibilidade(receitas, itens)
+Sistema -> Sistema : aplicarRestricoesAlimentares(filtros)
+Sistema -> Sistema : priorizarItensProximosDoVencimento()
+Sistema -> Sistema : ordenarRanking()
 
-SS -> SS : ordenar por compatibilidade\ne prioridade de vencimento
-SS --> RC : ranking de sugestões
-RC --> FE : 200 OK + DTOs
-FE --> U : Exibe receitas, score,\nfaltantes e justificativa
+Sistema --> Usuario : exibirSugestoes(ranking, faltantes, justificativa)
+deactivate Sistema
 @enduml

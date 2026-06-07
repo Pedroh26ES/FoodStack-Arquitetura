@@ -1,98 +1,107 @@
 @startuml
-title FoodStack - Diagrama de Componentes
+title FoodStack - Arquitetura de Componentes (Completa)
 
 skinparam shadowing false
-skinparam componentStyle rectangle
+skinparam componentStyle uml2
 skinparam packageStyle rectangle
 skinparam defaultFontName Arial
-skinparam ArrowColor #0B2545
+skinparam ArrowColor Black
 skinparam component {
-  BackgroundColor #F6F7F9
-  BorderColor #0B2545
+  BackgroundColor White
+  BorderColor Black
+}
+skinparam rectangle {
+  BackgroundColor White
+  BorderColor Black
+}
+skinparam database {
+  BackgroundColor White
+  BorderColor Black
+}
+skinparam queue {
+  BackgroundColor White
+  BorderColor Black
 }
 
-actor "Usuário" as User
+component "Portal Web\n(React)" as Portal
 
-node "Cliente" {
-  component "Web App\nReact + Vite" as Web
-  component "Mobile App\nReact Native" as Mobile
+() "Dashboard API" as DashboardAPI
+() "Despensa API" as DespensaAPI
+() "Receitas API" as ReceitasAPI
+() "Login/Token" as LoginToken
+() "Compras API" as ComprasAPI
+() "Compartilhamento API" as CompartilhamentoAPI
+
+Portal ..> DashboardAPI
+Portal ..> DespensaAPI
+Portal ..> ReceitasAPI
+Portal ..> LoginToken
+Portal ..> ComprasAPI
+Portal ..> CompartilhamentoAPI
+
+rectangle "Backend (AWS Cloud)" as Backend {
+  component "Módulo de\nDashboard" as ModDashboard
+  component "Módulo de\nDespensa" as ModDespensa
+  component "Módulo de\nReceitas" as ModReceitas
+  component "Módulo de\nCompras" as ModCompras
+  component "Módulo de\nCompartilhamento" as ModCompart
+  component "Auth Service\n(AWS Cognito)" as Auth
 }
 
-package "API FoodStack\nSpring Boot" as API {
-  component "Auth Controller" as AuthController
-  component "Pantry Controller" as PantryController
-  component "Recipe Controller" as RecipeController
-  component "Shopping Controller" as ShoppingController
+DashboardAPI -- ModDashboard
+DespensaAPI -- ModDespensa
+ReceitasAPI -- ModReceitas
+ComprasAPI -- ModCompras
+CompartilhamentoAPI -- ModCompart
+LoginToken -- Auth
 
-  package "Camada de Aplicação" {
-    component "Auth Service" as AuthService
-    component "Pantry Service" as PantryService
-    component "Recipe Service" as RecipeService
-    component "Suggestion Service" as SuggestionService
-    component "Shopping List Service" as ShoppingService
-    component "Sharing Service" as SharingService
-    component "Notification Service" as NotificationService
-  }
+() "Msg Validade" as MsgValidade
+() "Score Receita" as ScoreReceita
+() "Lista Compras" as ListaCompras
+() "Permissões" as Permissoes
 
-  package "Domínio" {
-    component "Regras de Estoque" as StockPolicy
-    component "Politica de Validade" as ExpiryPolicy
-    component "Motor de Compatibilidade" as MatchEngine
-    component "Politica de Permissões" as PermissionPolicy
-  }
-
-  package "Infraestrutura" {
-    component "JPA Repositories" as Repos
-    component "Event Publisher" as Events
-    component "OpenAPI Adapter" as OpenAPI
-  }
+rectangle "Infraestrutura AWS" as Infra {
+  queue "Fila de Eventos\n(Amazon SQS)" as SQS
+  component "Envio de E-mails\n(Amazon SES)" as SES
+  database "PostgreSQL\n(Amazon RDS)" as RDS
+  database "Cache de Sugestões\n(Amazon ElastiCache)" as Redis
+  component "Storage de Receitas\n(Amazon S3)" as S3
 }
 
-database "PostgreSQL\nFoodStack DB" as DB
-database "Redis\nCache" as Redis
-queue "RabbitMQ\nEventos" as MQ
-cloud "Firebase Cloud Messaging" as FCM
-cloud "Amazon SES" as SES
+rectangle "Serviços Externos" as Externos {
+  component "Firebase Push" as Firebase
+  component "OpenFoodFacts API" as FoodFacts
+}
 
-User --> Web
-User --> Mobile
-Web --> AuthController : HTTPS/JSON
-Web --> PantryController : HTTPS/JSON
-Web --> RecipeController : HTTPS/JSON
-Web --> ShoppingController : HTTPS/JSON
-Mobile --> AuthController : HTTPS/JSON
-Mobile --> PantryController : HTTPS/JSON
+component "App Mobile\n(futuro)" as Mobile
+Mobile ..> DespensaAPI
+Mobile ..> ReceitasAPI
+Mobile ..> LoginToken
 
-AuthController --> AuthService
-PantryController --> PantryService
-RecipeController --> RecipeService
-RecipeController --> SuggestionService
-ShoppingController --> ShoppingService
+ModDespensa ..> MsgValidade : Publica
+MsgValidade --> SQS
+SQS --> SES : Envia alerta
+SQS --> Firebase : Push
 
-AuthService --> PermissionPolicy
-PantryService --> StockPolicy
-PantryService --> ExpiryPolicy
-RecipeService --> MatchEngine
-SuggestionService --> MatchEngine
-SuggestionService --> ExpiryPolicy
-ShoppingService --> MatchEngine
-SharingService --> PermissionPolicy
+ModReceitas --> ScoreReceita : Calcula
+ScoreReceita --> RDS
+ScoreReceita --> Redis
 
-AuthService --> Repos
-PantryService --> Repos
-RecipeService --> Repos
-ShoppingService --> Repos
-SharingService --> Repos
+ModCompras --> ListaCompras : Gera
+ListaCompras --> RDS
 
-Repos --> DB
-SuggestionService --> Redis
-Events --> MQ
-NotificationService --> FCM
-NotificationService --> SES
-MQ --> NotificationService : eventos de validade
+ModCompart --> Permissoes : Valida
+Permissoes --> RDS
 
-OpenAPI .. AuthController
-OpenAPI .. PantryController
-OpenAPI .. RecipeController
-OpenAPI .. ShoppingController
+ModDashboard --> RDS
+ModDespensa --> RDS
+ModReceitas --> RDS
+ModReceitas --> S3 : Upload/Leitura
+ModReceitas ..> FoodFacts : Consulta dados nutricionais
+Auth --> RDS : Usuários
+
+note bottom of Backend
+  Os módulos representam componentes lógicos
+  planejados para uma futura API Spring Boot.
+end note
 @enduml
