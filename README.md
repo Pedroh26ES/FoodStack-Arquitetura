@@ -1,7 +1,7 @@
 # 🍽️ FoodStack
 
 <p align="center">
-  <img src="assets/readme/banner_topo_logo_foodstack.png" alt="Banner conceitual FoodStack" width="100%"/>
+  <img src="assets/readme/banner_topo_logo_foodstack.png" alt="Banner conceitual FoodStack" width="88%"/>
 </p>
 
 > **Despensa virtual e motor de recomendação de receitas** baseado em estoque doméstico, validade de alimentos, restrições alimentares e compartilhamento familiar.
