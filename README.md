@@ -3,6 +3,10 @@ https://github.com/joaopauloaramuni/laboratorio-de-desenvolvimento-de-software/b
 
 # 🏷️ FoodStack 👨‍💻
 
+<p align="center">
+  <img src="assets/readme/foodstack_logo_animado_v4.svg" alt="Apresentação animada do FoodStack" width="88%"/>
+</p>
+
 > [!NOTE]
 > Projeto acadêmico individual de uma **despensa virtual com recomendação de receitas**. A solução controla estoque e validade, reduz desperdícios e sugere receitas com os alimentos disponíveis.
 
@@ -151,14 +155,20 @@ Foram planejados os padrões Repository, Service Layer, DTO, Strategy e Observer
 
 ### Exemplos de diagramas
 
-| Diagrama de Arquitetura | Detalhe da Arquitetura |
+| Diagrama | Diagrama |
 | :---: | :---: |
-| **Componentes** | **Classes** |
-| <img src="docs/diagramas/02-diagrama-componentes.png" alt="Diagrama de Componentes" width="430px"/> | <img src="docs/diagramas/03-diagrama-classes.png" alt="Diagrama de Classes" width="430px"/> |
-| **Modelo de Dados** | **Sequência de Sugestão de Receitas** |
-| <img src="docs/diagramas/04-modelo-dados-der.png" alt="Modelo de Dados" width="430px"/> | <img src="docs/diagramas/05a-sequencia-sugestao-receitas.png" alt="Diagrama de Sequência" width="430px"/> |
-| **Implantação** | **Casos de Uso** |
-| <img src="docs/diagramas/09-diagrama-implantacao.png" alt="Diagrama de Implantação" width="430px"/> | <img src="docs/diagramas/01-casos-de-uso.png" alt="Diagrama de Casos de Uso" width="430px"/> |
+| **01 - Casos de Uso** | **02 - Componentes** |
+| <img src="docs/diagramas/01-casos-de-uso.png" alt="Diagrama de Casos de Uso" width="430px"/> | <img src="docs/diagramas/02-diagrama-componentes.png" alt="Diagrama de Componentes" width="430px"/> |
+| **03 - Classes** | **04 - Modelo de Dados / DER** |
+| <img src="docs/diagramas/03-diagrama-classes.png" alt="Diagrama de Classes" width="430px"/> | <img src="docs/diagramas/04-modelo-dados-der.png" alt="Modelo de Dados" width="430px"/> |
+| **05a - Sequência: Sugestão de Receitas** | **05b - Sequência: Preparo e Baixa de Estoque** |
+| <img src="docs/diagramas/05a-sequencia-sugestao-receitas.png" alt="Sequência de Sugestão de Receitas" width="430px"/> | <img src="docs/diagramas/05b-sequencia-preparo-baixa-estoque.png" alt="Sequência de Preparo e Baixa de Estoque" width="430px"/> |
+| **05c - Sequência: Lista de Compras** | **05d - Sequência: Alerta de Vencimento** |
+| <img src="docs/diagramas/05c-sequencia-lista-compras.png" alt="Sequência de Lista de Compras" width="430px"/> | <img src="docs/diagramas/05d-sequencia-alerta-vencimento.png" alt="Sequência de Alerta de Vencimento" width="430px"/> |
+| **06 - Atividade** | **07 - Estados** |
+| <img src="docs/diagramas/06-diagrama-atividade-alerta-vencimento.png" alt="Diagrama de Atividade" width="430px"/> | <img src="docs/diagramas/07-diagrama-estados-item-despensa.png" alt="Diagrama de Estados" width="430px"/> |
+| **08 - Comunicação** | **09 - Implantação** |
+| <img src="docs/diagramas/08-diagrama-comunicacao-lista-compras.png" alt="Diagrama de Comunicação" width="430px"/> | <img src="docs/diagramas/09-diagrama-implantacao.png" alt="Diagrama de Implantação" width="430px"/> |
 
 Cada imagem foi gerada a partir de um arquivo PlantUML versionado em [docs/plantuml](docs/plantuml).
 
@@ -301,7 +311,10 @@ FoodStack-Arquitetura/
 ├── README.md
 ├── LICENSE
 ├── assets/
-│   └── logo-foodstack.png
+│   ├── logo-foodstack.png
+│   └── readme/
+│       ├── foodstack_logo_animado_v4.svg
+│       └── foodstack_encerramento_animado.svg
 └── docs/
     ├── FoodStack - Documentação de Projeto.docx
     ├── diagramas/
@@ -445,3 +458,7 @@ Agradecimento ao Prof. Dr. João Paulo Aramuni pelos templates disponibilizados 
 ## 📄 Licença
 
 Distribuído sob a licença MIT. Consulte [LICENSE](LICENSE).
+
+<p align="center">
+  <img src="assets/readme/foodstack_encerramento_animado.svg" alt="Encerramento animado do FoodStack" width="88%"/>
+</p>
