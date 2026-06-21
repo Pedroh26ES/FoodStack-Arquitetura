@@ -30,6 +30,8 @@
 
 ## 📌 Escopo da entrega
 
+> **Documento no template obrigatório:** [FoodStack - Documentação de Projeto.docx](docs/FoodStack%20-%20Documenta%C3%A7%C3%A3o%20de%20Projeto.docx)
+
 Este repositório contém o **projeto técnico e arquitetural** do FoodStack. A entrega não contém implementação de front-end, back-end, scripts de banco, containers executáveis ou deploy real. O objetivo é documentar a solução com rigor técnico e manter os diagramas em PlantUML.
 
 | Exigência | Atendimento |
