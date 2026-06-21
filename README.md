@@ -73,7 +73,9 @@ Esta entrega é exclusivamente de **documentação, diagramação e arquitetura*
 
 **📎 Documentos e fontes do projeto:**
 
-- [Documento Word no template obrigatório](docs/FoodStack%20-%20Documenta%C3%A7%C3%A3o%20de%20Projeto.docx)
+- [📄 Visualizar a documentação completa em PDF](docs/FoodStack%20-%20Documenta%C3%A7%C3%A3o%20de%20Projeto.pdf)
+- [📝 Baixar o documento editável em Word](docs/FoodStack%20-%20Documenta%C3%A7%C3%A3o%20de%20Projeto.docx)
+- [📚 Central da pasta docs](docs)
 - [Códigos PlantUML](docs/plantuml)
 - [Diagramas renderizados](docs/diagramas)
 
@@ -440,6 +442,9 @@ FoodStack-Arquitetura/
 │       ├── foodstack_logo_animado_v4.svg
 │       └── foodstack_encerramento_animado.svg
 └── docs/
+    ├── README.md
+    ├── capa-documentacao.png
+    ├── FoodStack - Documentação de Projeto.pdf
     ├── FoodStack - Documentação de Projeto.docx
     ├── diagramas/
     │   └── 12 diagramas renderizados em PNG
@@ -453,7 +458,9 @@ FoodStack-Arquitetura/
 
 Como não há aplicação implementada, a demonstração da entrega é realizada pelos artefatos de projeto:
 
-- 📄 [Documento no template obrigatório](docs/FoodStack%20-%20Documenta%C3%A7%C3%A3o%20de%20Projeto.docx)
+- 📄 [Visualizar documentação completa em PDF](docs/FoodStack%20-%20Documenta%C3%A7%C3%A3o%20de%20Projeto.pdf)
+- 📝 [Baixar documento editável em Word](docs/FoodStack%20-%20Documenta%C3%A7%C3%A3o%20de%20Projeto.docx)
+- 📚 [Abrir a central da documentação](docs)
 - 🖼️ [Diagramas renderizados](docs/diagramas)
 - 🌱 [Códigos PlantUML](docs/plantuml)
 - 📐 Casos de uso, sequências, componentes, implantação, classes, comunicação, estados e modelo de dados exibidos neste README.
