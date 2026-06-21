@@ -1,15 +1,11 @@
 <div align="center">
 
-# Documentação de Projeto
-## para o sistema
-# FoodStack
+**📌 Versão 1.0**
 
-**Versão 1.0**
-
-Projeto de sistema elaborado pelo aluno **Pedro Henrique**<br/>
+👨‍🎓 Projeto de sistema elaborado pelo aluno **Pedro Henrique**<br/>
 como parte da disciplina **Projeto de Software**.
 
-**21 de junho de 2026**
+**📅 21 de junho de 2026**
 
 </div>
 
@@ -19,7 +15,7 @@ como parte da disciplina **Projeto de Software**.
 
 ---
 
-## Tabela de Conteúdo
+## Tabela de Conteúdo 📚
 
 1. [Introdução](#1-introdução)
 2. [Modelos de Usuário e Requisitos](#2-modelos-de-usuário-e-requisitos)
@@ -37,7 +33,7 @@ como parte da disciplina **Projeto de Software**.
 
 ---
 
-## Histórico de Revisões
+## Histórico de Revisões 📝
 
 | Nome | Data | Razões para Mudança | Versão |
 |---|---|---|---|
@@ -95,7 +91,7 @@ O diagrama utiliza identificadores no formato `UC-XX`, permitindo referência no
 
 [Código PlantUML do diagrama de casos de uso](docs/plantuml/01-casos-de-uso.puml)
 
-**Histórias de usuários principais:**
+**📚 Histórias de usuários:**
 
 | ID | História de Usuário | Caso de Uso |
 |---|---|---|
@@ -103,12 +99,16 @@ O diagrama utiliza identificadores no formato `UC-XX`, permitindo referência no
 | US-02 | Como usuário, quero registrar datas de validade para evitar desperdícios. | UC-02 |
 | US-03 | Como usuário, quero receber alertas para consumir itens antes do vencimento. | UC-03 |
 | US-04 | Como usuário, quero consultar o estoque para saber quais alimentos possuo. | UC-04 |
-| US-05 | Como usuário, quero receber sugestões de receitas compatíveis com minha despensa. | UC-07 |
-| US-06 | Como usuário, quero priorizar receitas com alimentos próximos do vencimento. | UC-08 |
-| US-07 | Como usuário, quero registrar o preparo para baixar automaticamente o estoque. | UC-09 |
-| US-08 | Como usuário, quero filtrar receitas por restrições alimentares. | UC-10 |
-| US-09 | Como usuário, quero gerar uma lista com ingredientes faltantes. | UC-12 |
-| US-10 | Como dono, quero compartilhar a despensa com minha família. | UC-14 |
+| US-05 | Como usuário, quero classificar os alimentos por local de armazenamento. | UC-05 |
+| US-06 | Como usuário, quero editar ou excluir ingredientes cadastrados incorretamente. | UC-06 |
+| US-07 | Como usuário, quero receber sugestões de receitas compatíveis com minha despensa. | UC-07 |
+| US-08 | Como usuário, quero priorizar receitas com alimentos próximos do vencimento. | UC-08 |
+| US-09 | Como usuário, quero registrar o preparo para baixar automaticamente o estoque. | UC-09 |
+| US-10 | Como usuário, quero filtrar receitas de acordo com minhas restrições alimentares. | UC-10 |
+| US-11 | Como usuário, quero favoritar receitas para encontrá-las rapidamente. | UC-11 |
+| US-12 | Como usuário, quero gerar uma lista de compras com os ingredientes faltantes. | UC-12 |
+| US-13 | Como usuário, quero cadastrar minhas próprias receitas. | UC-13 |
+| US-14 | Como dono, quero compartilhar a despensa com minha família e definir permissões. | UC-14 |
 
 ### 2.3 Diagrama de Sequência do Sistema e Contrato de Operações
 
@@ -146,7 +146,7 @@ Nesta subseção são apresentados os diagramas de sequência do sistema para qu
 
 [Código PlantUML](docs/plantuml/05d-sequencia-alerta-vencimento.puml)
 
-**Formato para cada contrato de operação**
+**🔧 Formato para cada contrato de operação**
 
 | Campo | CO-01 |
 |---|---|
@@ -308,6 +308,31 @@ O modelo de dados apresenta o esquema relacional planejado e a estratégia de ma
 - bloqueio otimista em `ItemDespensa` para evitar perda de atualização;
 - transação única durante a baixa dos ingredientes de uma receita;
 - histórico de estoque para auditoria das alterações.
+
+**🛠️ Tecnologias fictícias do projeto**
+
+> As tecnologias abaixo representam uma implementação futura e foram definidas apenas para fins de projeto e arquitetura.
+
+| Área | Tecnologias e versões planejadas | Finalidade |
+|---|---|---|
+| **Arquitetura** | Monólito modular, DDD, REST e eventos internos | Separar módulos e regras de negócio sem complexidade operacional excessiva. |
+| **Front-end Web** | React 19, TypeScript 5.8, Vite 7, Tailwind CSS 4 e Zustand 5 | Construir a interface responsiva e gerenciar o estado da despensa. |
+| **Aplicativo Mobile** | React Native 0.76 e Expo 52 | Disponibilizar consultas, alertas e atualização de estoque em dispositivos móveis. |
+| **Back-end** | Java 21, Spring Boot 3.4, Spring Security 6 e Spring Data JPA | Implementar API, autenticação, autorização, casos de uso e transações. |
+| **API e contratos** | REST, OpenAPI 3.1, Bean Validation e JWT | Padronizar endpoints, validar dados e proteger operações. |
+| **Banco de dados** | PostgreSQL 16, Hibernate 6 e Flyway 10 | Persistir dados relacionais e versionar o esquema. |
+| **Cache** | Redis 7 | Armazenar consultas frequentes e resultados temporários de recomendação. |
+| **Mensageria** | RabbitMQ 4 e Amazon SQS | Processar alertas e integrações de forma assíncrona. |
+| **Notificações** | Amazon SES e Firebase Cloud Messaging | Enviar avisos por e-mail e notificações push. |
+| **Infraestrutura** | Docker 27, Docker Compose 2.29, AWS ECS Fargate, RDS e S3 | Empacotar e hospedar os componentes planejados. |
+| **Front-end em nuvem** | Vercel | Publicar a aplicação web fictícia. |
+| **CI/CD e qualidade** | GitHub Actions, SonarQube, Maven e npm | Automatizar build, análise estática e validações. |
+| **Observabilidade** | OpenTelemetry 1.44, Prometheus 3, Grafana 11 e CloudWatch | Coletar logs, métricas e rastreamento distribuído. |
+| **Testes** | JUnit 5, Mockito 5, Testcontainers 1.20, ArchUnit e Playwright | Validar regras, integrações, arquitetura e fluxos de usuário. |
+
+---
+
+**✅ Resultado esperado da arquitetura tecnológica:** uma solução segura, modular, observável e preparada para evolução futura, sem que essas tecnologias estejam implementadas nesta entrega.
 
 ---
 
