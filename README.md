@@ -1,37 +1,42 @@
-<!-- README estruturado a partir do template obrigatório indicado na atividade. -->
+<!-- README adaptado do template oficial da disciplina:
+https://github.com/joaopauloaramuni/laboratorio-de-desenvolvimento-de-software/blob/main/TEMPLATES/template_README.md -->
 
 # 🏷️ FoodStack 👨‍💻
 
 > [!NOTE]
-> **Despensa virtual e motor de recomendação de receitas** que reduz desperdícios ao combinar estoque doméstico, validade dos alimentos, restrições alimentares e compartilhamento familiar.
+> Projeto acadêmico individual de uma **despensa virtual com recomendação de receitas**. A solução controla estoque e validade, reduz desperdícios e sugere receitas com os alimentos disponíveis.
 
 <table>
   <tr>
     <td width="800px">
       <div align="justify">
-        O <b>FoodStack</b> é um projeto acadêmico individual de documentação, diagramação e arquitetura de software. A solução organiza os alimentos disponíveis em casa, alerta sobre vencimentos e recomenda receitas compatíveis. Conforme definido na atividade, este repositório <b>não contém a implementação da aplicação</b>: apresenta o planejamento técnico, tecnologias fictícias, requisitos, regras de negócio e diagramas produzidos obrigatoriamente em PlantUML.
+        O FoodStack foi projetado para famílias que desejam organizar alimentos, acompanhar vencimentos e decidir o que cozinhar. Esta entrega contém somente documentação, arquitetura e diagramas, conforme solicitado. Não existe código executável da aplicação.
       </div>
     </td>
     <td>
-      <img src="assets/logo-foodstack.png" alt="Logo do FoodStack" width="150px"/>
+      <img src="assets/logo-foodstack.png" alt="Logo do FoodStack" width="140px"/>
     </td>
   </tr>
 </table>
-
-> [!IMPORTANT]
-> **A documentação principal do FoodStack é este README.md**, estruturado conforme o [template obrigatório do professor](https://github.com/joaopauloaramuni/laboratorio-de-desenvolvimento-de-software/blob/main/TEMPLATES/template_README.md). O arquivo [FoodStack - Documentação de Projeto.docx](docs/FoodStack%20-%20Documenta%C3%A7%C3%A3o%20de%20Projeto.docx) é somente a versão complementar no modelo Word solicitado na atividade. Todo o código PlantUML está em [docs/plantuml](docs/plantuml).
 
 ---
 
 ## 🚧 Status do Projeto
 
-![Status](https://img.shields.io/badge/status-projeto%20concluído-2ea44f?style=for-the-badge)
-![Entrega](https://img.shields.io/badge/entrega-documentação%20e%20arquitetura-007ec6?style=for-the-badge)
-![PlantUML](https://img.shields.io/badge/PlantUML-obrigatório-F7A81B?style=for-the-badge&logo=uml&logoColor=white)
-![Versão](https://img.shields.io/badge/versão-1.1.0-blue?style=for-the-badge)
-![Licença](https://img.shields.io/badge/licença-MIT-green?style=for-the-badge)
+### Exemplos de badges básicos:
 
-O projeto está **concluído para entrega acadêmica**. Foram produzidos o README no modelo solicitado, o documento Word no template obrigatório, 12 códigos-fonte PlantUML e 12 diagramas renderizados.
+![Status](https://img.shields.io/badge/status-concluído-2ea44f)
+![Versão](https://img.shields.io/badge/versão-1.0.0-blue)
+![Licença](https://img.shields.io/badge/licença-MIT-green)
+![Documentação](https://img.shields.io/badge/entrega-documentação%20e%20arquitetura-007ec6)
+
+### Outros exemplos de badges:
+
+![PlantUML](https://img.shields.io/badge/PlantUML-obrigatório-F7A81B?style=for-the-badge)
+![React](https://img.shields.io/badge/React-19-61DAFB?style=for-the-badge&logo=react&logoColor=black)
+![Java](https://img.shields.io/badge/Java-21-ED8B00?style=for-the-badge&logo=openjdk&logoColor=white)
+![Spring Boot](https://img.shields.io/badge/Spring_Boot-3.4-6DB33F?style=for-the-badge&logo=springboot&logoColor=white)
+![PostgreSQL](https://img.shields.io/badge/PostgreSQL-16-4169E1?style=for-the-badge&logo=postgresql&logoColor=white)
 
 ---
 
@@ -42,7 +47,13 @@ O projeto está **concluído para entrega acadêmica**. Foram produzidos o READM
 - [Funcionalidades Principais](#-funcionalidades-principais)
 - [Tecnologias Utilizadas](#-tecnologias-utilizadas)
 - [Arquitetura](#-arquitetura)
+  - [Exemplos de diagramas](#exemplos-de-diagramas)
 - [Instalação e Execução](#-instalação-e-execução)
+  - [Pré-requisitos](#pré-requisitos)
+  - [Variáveis de Ambiente](#-variáveis-de-ambiente)
+  - [Instalação de Dependências](#-instalação-de-dependências)
+  - [Inicialização do Banco de Dados](#-inicialização-do-banco-de-dados-postgresql)
+  - [Como Executar a Aplicação](#-como-executar-a-aplicação)
 - [Deploy](#-deploy)
 - [Estrutura de Pastas](#-estrutura-de-pastas)
 - [Demonstração](#-demonstração)
@@ -57,618 +68,242 @@ O projeto está **concluído para entrega acadêmica**. Foram produzidos o READM
 
 ## 🔗 Links Úteis
 
-| Recurso | Link | Descrição |
-|---|---|---|
-| Documentação principal | [README do FoodStack](README.md) | Projeto completo conforme o template de README solicitado. |
-| Versão complementar em Word | [Abrir o arquivo DOCX](docs/FoodStack%20-%20Documenta%C3%A7%C3%A3o%20de%20Projeto.docx) | Cópia no modelo Word solicitado na atividade. |
-| Código PlantUML | [Acessar os arquivos .puml](docs/plantuml) | Fontes versionadas de todos os diagramas. |
-| Diagramas renderizados | [Acessar as imagens PNG](docs/diagramas) | Diagramas prontos para visualização. |
-| Template de README | [Consultar o modelo do professor](https://github.com/joaopauloaramuni/laboratorio-de-desenvolvimento-de-software/blob/main/TEMPLATES/template_README.md) | Estrutura usada neste README. |
-| PlantUML | [Documentação oficial](https://plantuml.com/) | Ferramenta obrigatória utilizada na modelagem. |
+- **Documento obrigatório:** [FoodStack - Documentação de Projeto.docx](docs/FoodStack%20-%20Documenta%C3%A7%C3%A3o%20de%20Projeto.docx)
+- **Códigos PlantUML:** [docs/plantuml](docs/plantuml)
+- **Diagramas renderizados:** [docs/diagramas](docs/diagramas)
+- **Template de README utilizado:** [template_README.md](https://github.com/joaopauloaramuni/laboratorio-de-desenvolvimento-de-software/blob/main/TEMPLATES/template_README.md)
+- **PlantUML:** [plantuml.com](https://plantuml.com/)
 
-> Não há demo online nem aplicativo para download, pois a atividade solicita somente o projeto, a diagramação e a arquitetura.
+> Não há demo online ou aplicativo para download, pois a atividade não exige implementação.
 
 ---
 
 ## 📝 Sobre o Projeto
 
-O FoodStack é uma aplicação planejada para organizar a despensa doméstica e recomendar receitas com base nos alimentos disponíveis. O sistema considera estoque, quantidade, unidade de medida, validade, local de armazenamento, restrições alimentares e permissões de compartilhamento.
+O FoodStack nasceu da necessidade de reduzir o desperdício doméstico de alimentos. Muitas famílias perdem produtos por vencimento, compram itens duplicados e têm dificuldade para escolher receitas com o estoque disponível.
 
-### 🎯 Problema
+A aplicação projetada mantém uma despensa compartilhada, registra quantidades e datas de validade, alerta sobre vencimentos e recomenda receitas. O contexto é acadêmico e todo o comportamento foi especificado por requisitos, regras de negócio, contratos e diagramas UML.
 
-Usuários frequentemente perdem alimentos por vencimento, compram itens duplicados por falta de visibilidade e têm dificuldade para decidir o que cozinhar com os ingredientes disponíveis.
-
-### ✅ Solução
-
-Uma despensa virtual compartilhável que:
-
-- registra ingredientes e quantidades;
-- acompanha validade dos alimentos;
-- alerta itens próximos do vencimento;
-- recomenda receitas compatíveis com o estoque;
-- prioriza alimentos que precisam ser consumidos;
-- baixa automaticamente o estoque após preparo;
-- gera lista de compras com faltantes;
-- permite colaboração entre membros da família.
-
-<p align="center">
-  <img src="assets/readme/visao_geral_solucao.png" alt="Visão geral da solução FoodStack" width="100%"/>
-</p>
-
-### 💼 Valor entregue
-
-| Valor | Resultado esperado |
-|---|---|
-| Redução de desperdício | Alimentos próximos do vencimento são priorizados. |
-| Melhor planejamento | Usuário sabe o que tem e o que falta comprar. |
-| Decisão rápida | Sistema sugere receitas compatíveis. |
-| Consistência operacional | Estoque é atualizado após preparo. |
-| Colaboração | Despensa pode ser compartilhada com permissões. |
-
----
-
-### Problema x solução
-
-<p align="center">
-  <img src="assets/readme/problema_solucao.png" alt="Infográfico Problema x Solução do FoodStack" width="100%"/>
-</p>
-
----
-
-### Escopo acadêmico da entrega
-
-> **Entrega principal:** este `README.md`, contendo a especificação completa do projeto. O [arquivo DOCX](docs/FoodStack%20-%20Documenta%C3%A7%C3%A3o%20de%20Projeto.docx) permanece apenas como versão complementar no modelo Word.
-
-Este repositório contém o **projeto técnico e arquitetural** do FoodStack. A entrega não contém implementação de front-end, back-end, scripts de banco, containers executáveis ou deploy real. O objetivo é documentar a solução com rigor técnico e manter os diagramas em PlantUML.
-
-| Exigência | Atendimento |
-|---|---|
-| Trabalho individual | Projeto identificado e documentado como entrega individual. |
-| Uso obrigatório de PlantUML | Todos os diagramas foram escritos em `.puml`. |
-| Código PlantUML no repositório | Arquivos em [`docs/plantuml`](docs/plantuml). |
-| Não desenvolver código da aplicação | Não há implementação de sistema, apenas documentação e arquitetura. |
-| Projeto, diagramação e arquitetura | Toda a especificação está consolidada neste README. |
-| README no template solicitado | Inclui visão, funcionalidades, tecnologias, arquitetura, execução planejada, deploy, testes e referências. |
-
-### 📎 Decisão de organização dos diagramas
-
-Para atender ao template de documentação e manter a entrega objetiva, foi adotado o padrão:
-
-> **1 diagrama para cada tipo principal + 4 diagramas de sequência separados por fluxo.**
-
-A separação dos diagramas de sequência foi feita porque o template `.docx` solicita sequência de **pelo menos 3 casos de uso ou histórias de usuário**. O FoodStack documenta 4 fluxos sequenciais, cobrindo os cenários mais importantes do sistema:
-
-| Tipo | Quantidade | Observação |
-|---|---:|---|
-| Casos de uso | 1 | Visão geral dos atores e funcionalidades. |
-| Componentes | 1 | Arquitetura lógica e integrações planejadas. |
-| Classes | 1 | Estrutura do domínio. |
-| Modelo de dados / DER | 1 | Persistência relacional planejada. |
-| Sequência | 4 | Sugestão de receitas, preparo/baixa, lista de compras e alerta de vencimento. |
-| Atividade | 1 | Rotina de alerta de vencimento. |
-| Transição de Estados | 1 | Ciclo de vida do item da despensa. |
-| Comunicação | 1 | Troca de mensagens para lista de compras. |
-| Implantação | 1 | Infraestrutura planejada em nuvem. |
-| **Total** | **12** | **Todos com código PlantUML versionado e PNG renderizado.** |
-
----
-<a id="problema-solucao"></a>
+A documentação detalhada está no [arquivo Word preenchido no template obrigatório](docs/FoodStack%20-%20Documenta%C3%A7%C3%A3o%20de%20Projeto.docx).
 
 ---
 
 ## ✨ Funcionalidades Principais
 
+- **Autenticação:** cadastro, login e recuperação de acesso.
 - **Gestão da despensa:** cadastro, consulta, edição e remoção de ingredientes.
-- **Controle de validade:** identificação e notificação de itens próximos do vencimento.
-- **Sugestão de receitas:** ranking de receitas compatíveis com o estoque disponível.
-- **Baixa automática:** atualização transacional das quantidades após o preparo.
+- **Controle de validade:** alertas para itens próximos do vencimento.
+- **Sugestão de receitas:** recomendações compatíveis com o estoque e restrições alimentares.
+- **Baixa automática:** atualização transacional do estoque após o preparo.
 - **Lista de compras:** cálculo dos ingredientes ausentes ou insuficientes.
-- **Restrições alimentares:** filtragem de receitas incompatíveis com o usuário.
-- **Compartilhamento familiar:** acesso à despensa com papéis de dono, editor e leitor.
-
-### Requisitos funcionais
-
-> A numeração dos requisitos funcionais foi alinhada às **14 histórias de usuário**: cada `RF` representa a capacidade principal descrita pela `US` correspondente.
-
-| ID | Requisito |
-|---|---|
-| RF-01 | Cadastrar manualmente ingredientes na despensa informando nome, quantidade e unidade. |
-| RF-02 | Registrar data de validade opcional ao cadastrar ou editar um ingrediente. |
-| RF-03 | Notificar o usuário sobre ingredientes próximos da data de validade. |
-| RF-04 | Visualizar o estoque atual com filtros por local, validade, categoria e status. |
-| RF-05 | Classificar o local de armazenamento do ingrediente, como geladeira, congelador, armário ou despensa. |
-| RF-06 | Editar quantidade, unidade, validade e local de um ingrediente ou excluí-lo mediante confirmação. |
-| RF-07 | Sugerir receitas com base nos ingredientes disponíveis, exibindo compatibilidade, itens usados e faltantes. |
-| RF-08 | Priorizar sugestões de receitas que utilizem ingredientes próximos do vencimento. |
-| RF-09 | Registrar uma receita como preparada, baixar o estoque automaticamente e salvar histórico da movimentação. |
-| RF-10 | Filtrar receitas por restrições alimentares, como vegetariana, sem glúten ou sem lactose. |
-| RF-11 | Favoritar e desfavoritar receitas para acesso futuro. |
-| RF-12 | Gerar lista de compras com ingredientes ausentes ou insuficientes para uma receita escolhida. |
-| RF-13 | Cadastrar receitas próprias com ingredientes, porções e modo de preparo. |
-| RF-14 | Compartilhar a despensa com membros da família por convite e controlar permissões de dono, editor e leitor. |
-
----
-
-### Histórias de usuário
-
-| ID | História |
-|---|---|
-| US-01 | Como usuário, eu quero adicionar novos ingredientes à minha despensa virtual informando nome e quantidade, para manter o controle do que tenho em casa. |
-| US-02 | Como usuário, eu quero poder registrar a data de validade ao adicionar um ingrediente, para evitar o consumo de produtos estragados. |
-| US-03 | Como usuário, eu quero receber notificações sobre ingredientes próximos da validade, para priorizar esses itens e evitar desperdício. |
-| US-04 | Como usuário, eu quero visualizar uma lista completa dos itens disponíveis, para saber rapidamente o que tenho. |
-| US-05 | Como usuário, eu quero classificar onde o ingrediente está guardado, para facilitar a localização física. |
-| US-06 | Como usuário, eu quero alterar quantidade ou excluir ingrediente, para corrigir erros ou registrar descartes. |
-| US-07 | Como usuário, eu quero sugestões de receitas usando ingredientes que já possuo, para decidir o que cozinhar. |
-| US-08 | Como usuário, eu quero sugerir receitas com ingredientes prestes a vencer, para evitar perdas. |
-| US-09 | Como usuário, eu quero que uma receita preparada subtraia automaticamente as quantidades utilizadas da despensa. |
-| US-10 | Como usuário, eu quero filtrar receitas por restrições alimentares, para respeitar minha dieta. |
-| US-11 | Como usuário, eu quero favoritar receitas, para encontrá-las facilmente no futuro. |
-| US-12 | Como usuário, eu quero gerar lista de compras com ingredientes faltantes, para facilitar minha ida ao mercado. |
-| US-13 | Como usuário, eu quero cadastrar minhas próprias receitas, para que elas apareçam nas sugestões. |
-| US-14 | Como usuário, eu quero compartilhar a despensa com membros da família, para que todos mantenham o estoque sincronizado. |
-
----
-
-### Requisitos não funcionais
-
-| ID | Categoria | Requisito |
-|---|---|---|
-| RNF-01 | Segurança | Toda operação protegida deve validar autenticação e autorização no back-end. |
-| RNF-02 | Segurança | Senhas devem ser armazenadas com hash forte e sal. |
-| RNF-03 | Segurança | Tokens JWT devem possuir expiração e assinatura segura. |
-| RNF-04 | Privacidade | Logs não devem registrar senha, token ou segredo. |
-| RNF-05 | Performance | Consulta de estoque deve responder em até 500 ms para despensas comuns. |
-| RNF-06 | Performance | Sugestão de receitas deve responder em até 2 s para catálogo inicial. |
-| RNF-07 | Confiabilidade | Baixa automática de estoque deve ser transacional. |
-| RNF-08 | Manutenibilidade | Domínio não deve depender diretamente da infraestrutura. |
-| RNF-09 | Observabilidade | API deve expor logs estruturados, métricas e rastreamento. |
-| RNF-10 | Testabilidade | Regras de negócio devem ser testáveis isoladamente. |
-
----
-
-### Regras de negócio
-
-| ID | Regra |
-|---|---|
-| RN-01 | Todo item deve possuir nome, quantidade positiva, unidade e local de armazenamento. |
-| RN-02 | Validade é opcional, mas datas vencidas exigem confirmação explícita. |
-| RN-03 | Item com validade em até 5 dias deve ser classificado como próximo do vencimento. |
-| RN-04 | Item vencido não participa de sugestão sem aviso explícito ao usuário. |
-| RN-05 | Itens com quantidade zero não aparecem como disponíveis. |
-| RN-06 | Alterações de estoque registram usuário, data, operação e motivo quando aplicável. |
-| RN-07 | Compatibilidade considera ingredientes obrigatórios disponíveis sobre obrigatórios totais. |
-| RN-08 | Modo de vencimento adiciona peso para receitas com itens próximos da validade. |
-| RN-09 | Receita filtrada por restrição alimentar não pode conter ingrediente incompatível. |
-| RN-10 | Preparar receita exige estoque suficiente para todos os ingredientes obrigatórios. |
-| RN-11 | Baixa automática ocorre em transação única. |
-| RN-12 | Falha em qualquer item cancela toda a baixa. |
-| RN-13 | Lista de compras contém apenas itens ausentes ou insuficientes. |
-| RN-14 | Toda despensa possui exatamente um dono. |
-| RN-15 | Convite de compartilhamento expira após 7 dias ou após aceite. |
-
----
-
-### Atores e permissões
-
-| Perfil | Permissões |
-|---|---|
-| Dono | Consulta, cadastra, edita, remove, prepara receitas, convida membros, altera permissões e exclui despensa. |
-| Editor | Consulta, cadastra, edita, remove itens e prepara receitas. |
-| Leitor | Consulta estoque, receitas e listas, sem alterar dados. |
-| Serviço de notificação | Envia alertas de validade. |
-| Catálogo de receitas | Fornece receitas candidatas para recomendação. |
-
----
-
-### Casos de uso
-
-| ID | Caso de uso |
-|---|---|
-| UC-01 | Cadastrar ingrediente |
-| UC-02 | Registrar validade |
-| UC-03 | Receber alerta de vencimento |
-| UC-04 | Consultar estoque atual |
-| UC-05 | Classificar armazenamento |
-| UC-06 | Editar ou excluir ingrediente |
-| UC-07 | Sugerir receitas por estoque |
-| UC-08 | Priorizar itens próximos do vencimento |
-| UC-09 | Marcar receita como preparada |
-| UC-10 | Filtrar por restrição alimentar |
-| UC-11 | Favoritar receita |
-| UC-12 | Gerar lista de compras |
-| UC-13 | Cadastrar receita própria |
-| UC-14 | Compartilhar despensa |
-
----
-
-### Contratos de operação
-
-| Contrato | Operação | Responsabilidade | Falhas esperadas |
-|---|---|---|---|
-| CO-01 | `cadastrarIngrediente(despensaId, item)` | Criar item de estoque. | Quantidade inválida, unidade inválida, acesso negado. |
-| CO-02 | `consultarEstoque(despensaId, filtros)` | Retornar estoque filtrado. | Despensa inexistente, acesso negado. |
-| CO-03 | `sugerirReceitas(despensaId, filtros)` | Gerar ranking de receitas. | Catálogo vazio, restrição inválida, despensa sem itens. |
-| CO-04 | `prepararReceita(despensaId, receitaId, porcoes)` | Registrar preparo e baixar estoque. | Estoque insuficiente, conflito concorrente, acesso negado. |
-| CO-05 | `gerarListaCompras(despensaId, receitaId)` | Calcular ingredientes faltantes. | Unidade incompatível, receita inexistente. |
-| CO-06 | `convidarMembro(despensaId, email, papel)` | Criar convite de compartilhamento. | E-mail inválido, convite duplicado, papel inválido. |
-| CO-07 | `cadastrarReceitaPropria(usuarioId, receita)` | Registrar receita do usuário. | Receita sem ingredientes ou sem modo de preparo. |
+- **Compartilhamento:** papéis de dono, editor e leitor para membros da família.
+- **Histórico:** rastreabilidade das alterações de estoque.
 
 ---
 
 ## 🛠 Tecnologias Utilizadas
 
-> As tecnologias são **fictícias e planejadas**, como solicitado na atividade. Nenhum código de aplicação foi desenvolvido.
+> As tecnologias abaixo são **fictícias e planejadas**, conforme solicitado. Não há implementação no repositório.
 
 ### 💻 Front-end
 
-- **Framework:** React 19
-- **Linguagem:** TypeScript 5.8
-- **Estilização:** Tailwind CSS
-- **Build tool:** Vite 7
+- React 19
+- TypeScript 5.8
+- Vite 7
+- Tailwind CSS
+- Zustand
 
 ### 🖥️ Back-end
 
-- **Linguagem:** Java 21
-- **Framework:** Spring Boot 3.4
-- **Persistência:** Spring Data JPA, Hibernate e Flyway
-- **Banco de dados:** PostgreSQL 16
-- **Autenticação:** Spring Security e JWT
+- Java 21
+- Spring Boot 3.4
+- Spring Security com JWT
+- Spring Data JPA e Hibernate
+- PostgreSQL 16
 
 ### 📱 Mobile (Opcional)
 
-- **Framework planejado:** React Native
-- **Ferramentas:** Expo e Firebase Cloud Messaging
+- React Native
+- Expo
+- Firebase Cloud Messaging
 
 ### ⚙️ Infraestrutura & DevOps
 
-- **Containerização:** Docker e Docker Compose
-- **Cloud:** AWS ECS Fargate, RDS, S3 e SES
-- **Cache e eventos:** Redis 7 e RabbitMQ/Amazon SQS
-- **CI/CD:** GitHub Actions
-- **Observabilidade:** OpenTelemetry, Prometheus, Grafana e CloudWatch
-
-#### Resumo por camada
-
-> As tecnologias abaixo são fictícias para uma futura implementação. Elas existem para documentar uma arquitetura realista e profissional.
-
-| Camada | Tecnologias |
-|---|---|
-| Front-end | React 19, TypeScript 5.8, Vite 7, Tailwind CSS |
-| Mobile futuro | React Native, Expo |
-| Back-end | Java 21, Spring Boot 3.4, Spring Security, Spring Data JPA |
-| API | REST, OpenAPI 3.1, DTOs, validação de contratos |
-| Banco de dados | PostgreSQL 16, Flyway, Hibernate |
-| Cache | Redis 7 |
-| Eventos | RabbitMQ / Amazon SQS |
-| Cloud | AWS ECS Fargate, AWS RDS, AWS S3, Amazon SES |
-| Observabilidade | OpenTelemetry, Prometheus, Grafana, CloudWatch |
-| Qualidade | JUnit, Mockito, Testcontainers, Playwright, ArchUnit |
+- Docker e Docker Compose
+- GitHub Actions
+- AWS ECS Fargate e Amazon RDS
+- Redis
+- RabbitMQ
+- OpenTelemetry, Prometheus e Grafana
 
 ---
 
 ## 🏗 Arquitetura
 
-O FoodStack foi projetado como um **monólito modular orientado a domínio**, separando interface, aplicação, domínio e infraestrutura.
-
-<p align="center">
-  <img src="assets/readme/mapa_modulos.png" alt="Mapa dos módulos do FoodStack" width="100%"/>
-</p>
-
-### Decisão arquitetural
-
-| Decisão | Justificativa |
-|---|---|
-| Monólito modular | Reduz complexidade operacional sem perder organização interna. |
-| PostgreSQL | Garante integridade para estoque, preparo, histórico e lista de compras. |
-| Eventos internos | Desacoplam alertas e histórico das regras principais. |
-| Redis planejado | Reduz custo de consultas repetidas no motor de sugestão. |
-| JWT | Permite API stateless para web e mobile. |
-| PlantUML versionado | Torna os diagramas auditáveis e reprodutíveis. |
-
-### Camadas
-
-| Camada | Responsabilidade |
-|---|---|
-| Interface | Web app e futuro app mobile. |
-| API | Controllers REST, DTOs e validações de entrada. |
-| Aplicação | Orquestra casos de uso, transações e autorização. |
-| Domínio | Entidades, políticas, regras e invariantes. |
-| Infraestrutura | Banco, cache, filas, e-mail, push e storage. |
-
----
-
-### Modelo de domínio
-
-| Entidade | Papel |
-|---|---|
-| `Usuario` | Identidade autenticada. |
-| `Despensa` | Agregado raiz do estoque doméstico. |
-| `MembroDespensa` | Associação entre usuário, despensa e papel. |
-| `ConviteCompartilhamento` | Convite com token, papel e expiração. |
-| `Ingrediente` | Catálogo normalizado de ingredientes. |
-| `ItemDespensa` | Ingrediente disponível com quantidade, unidade, validade e local. |
-| `Receita` | Receita de catálogo ou própria. |
-| `IngredienteReceita` | Composição de uma receita. |
-| `ListaCompras` | Itens faltantes para preparar receita. |
-| `Notificacao` | Alerta de validade ou evento relevante. |
-
----
-
-### Modelo de dados
-
-| Tabela | Finalidade |
-|---|---|
-| `usuarios` | Conta e identidade. |
-| `despensas` | Despensas criadas. |
-| `membros_despensa` | Papéis e permissões. |
-| `convites_compartilhamento` | Convites pendentes, aceitos ou expirados. |
-| `ingredientes` | Catálogo normalizado. |
-| `itens_despensa` | Estoque disponível. |
-| `historico_estoque` | Auditoria de movimentos. |
-| `receitas` | Receitas públicas ou próprias. |
-| `ingredientes_receita` | Ingredientes necessários por receita. |
-| `restricoes_alimentares` | Restrições aplicáveis. |
-| `favoritos_receita` | Receitas favoritas. |
-| `listas_compras` | Listas geradas. |
-| `itens_lista_compras` | Itens faltantes. |
-| `notificacoes` | Alertas enviados. |
-
----
-
-### API planejada
-
-| Método | Endpoint | Descrição |
-|---|---|---|
-| `POST` | `/api/auth/register` | Registra usuário. |
-| `POST` | `/api/auth/login` | Autentica e retorna token. |
-| `GET` | `/api/despensas/{id}/itens` | Lista estoque. |
-| `POST` | `/api/despensas/{id}/itens` | Cadastra item. |
-| `PUT` | `/api/despensas/{id}/itens/{itemId}` | Edita item. |
-| `DELETE` | `/api/despensas/{id}/itens/{itemId}` | Remove item. |
-| `GET` | `/api/despensas/{id}/sugestoes` | Sugere receitas. |
-| `POST` | `/api/receitas/{id}/preparos` | Marca receita como preparada. |
-| `POST` | `/api/despensas/{id}/listas-compras` | Gera lista de compras. |
-| `POST` | `/api/despensas/{id}/convites` | Cria convite. |
-| `POST` | `/api/convites/{token}/aceite` | Aceita convite. |
-
----
-
-### Infográfico dos diagramas
-
-<p align="center">
-  <img src="assets/readme/todos_diagramas.png" alt="Infográfico dos tipos de diagramas UML e arquiteturais do FoodStack" width="100%"/>
-</p>
-
-> O infográfico apresenta os **9 tipos de modelagem** usados no projeto. Na galeria, o tipo **Sequência** foi detalhado em 4 diagramas separados para cumprir o template do trabalho com mais clareza.
-
----
-
-<a id="galeria-de-diagramas"></a>
-
-<a id="galeria-de-diagramas"></a>
-
-### Galeria de diagramas UML
-
-> Cada imagem abaixo foi gerada a partir do respectivo arquivo PlantUML. O repositório mantém **um diagrama por tipo principal** e detalha os fluxos de sequência em **4 diagramas separados**, atendendo ao template do trabalho.
-
-### 01 - Casos de uso
-
-[Código PlantUML](docs/plantuml/01-casos-de-uso.puml)
-
-<p align="center">
-  <img src="docs/diagramas/01-casos-de-uso.png" alt="Diagrama de Casos de Uso" width="900"/>
-</p>
-
-### 02 - Componentes
-
-[Código PlantUML](docs/plantuml/02-diagrama-componentes.puml)
-
-<p align="center">
-  <img src="docs/diagramas/02-diagrama-componentes.png" alt="Diagrama de Componentes" width="900"/>
-</p>
-
-### 03 - Classes
-
-[Código PlantUML](docs/plantuml/03-diagrama-classes.puml)
-
-<p align="center">
-  <img src="docs/diagramas/03-diagrama-classes.png" alt="Diagrama de Classes" width="900"/>
-</p>
-
-### 04 - Modelo de dados / DER
-
-[Código PlantUML](docs/plantuml/04-modelo-dados-der.puml)
-
-<p align="center">
-  <img src="docs/diagramas/04-modelo-dados-der.png" alt="Modelo de Dados" width="900"/>
-</p>
-
-### 05 - Sequência
-
-> O template `.docx` solicita diagramas de sequência para pelo menos 3 casos de uso ou histórias. Por isso, o fluxo sequencial foi dividido em 4 diagramas, cada um com um cenário de negócio completo.
-
-#### 05a - Sugestão de receitas por estoque
-
-[Código PlantUML](docs/plantuml/05a-sequencia-sugestao-receitas.puml)
-
-<p align="center">
-  <img src="docs/diagramas/05a-sequencia-sugestao-receitas.png" alt="Diagrama de Sequência - Sugestão de Receitas" width="900"/>
-</p>
-
-#### 05b - Preparo de receita e baixa automática
-
-[Código PlantUML](docs/plantuml/05b-sequencia-preparo-baixa-estoque.puml)
-
-<p align="center">
-  <img src="docs/diagramas/05b-sequencia-preparo-baixa-estoque.png" alt="Diagrama de Sequência - Preparo e Baixa de Estoque" width="900"/>
-</p>
-
-#### 05c - Geração de lista de compras
-
-[Código PlantUML](docs/plantuml/05c-sequencia-lista-compras.puml)
-
-<p align="center">
-  <img src="docs/diagramas/05c-sequencia-lista-compras.png" alt="Diagrama de Sequência - Lista de Compras" width="900"/>
-</p>
-
-#### 05d - Alerta automático de vencimento
-
-[Código PlantUML](docs/plantuml/05d-sequencia-alerta-vencimento.puml)
-
-<p align="center">
-  <img src="docs/diagramas/05d-sequencia-alerta-vencimento.png" alt="Diagrama de Sequência - Alerta de Vencimento" width="900"/>
-</p>
-### 06 - Atividade
-
-[Código PlantUML](docs/plantuml/06-diagrama-atividade-alerta-vencimento.puml)
-
-<p align="center">
-  <img src="docs/diagramas/06-diagrama-atividade-alerta-vencimento.png" alt="Diagrama de Atividade" width="760"/>
-</p>
-
-### 07 - Transição de Estados
-
-[Código PlantUML](docs/plantuml/07-diagrama-estados-item-despensa.puml)
-
-<p align="center">
-  <img src="docs/diagramas/07-diagrama-estados-item-despensa.png" alt="Diagrama de Transição de Estados" width="820"/>
-</p>
-
-### 08 - Comunicação
-
-[Código PlantUML](docs/plantuml/08-diagrama-comunicacao-lista-compras.puml)
-
-<p align="center">
-  <img src="docs/diagramas/08-diagrama-comunicacao-lista-compras.png" alt="Diagrama de Comunicação" width="900"/>
-</p>
-
-### 09 - Implantação
-
-[Código PlantUML](docs/plantuml/09-diagrama-implantacao.puml)
-
-<p align="center">
-  <img src="docs/diagramas/09-diagrama-implantacao.png" alt="Diagrama de Implantação" width="760"/>
-</p>
-
----
-
-### Arquivos PlantUML
-
-| Arquivo | Tipo |
-|---|---|
-| [`01-casos-de-uso.puml`](docs/plantuml/01-casos-de-uso.puml) | Casos de uso |
-| [`02-diagrama-componentes.puml`](docs/plantuml/02-diagrama-componentes.puml) | Componentes |
-| [`03-diagrama-classes.puml`](docs/plantuml/03-diagrama-classes.puml) | Classes |
-| [`04-modelo-dados-der.puml`](docs/plantuml/04-modelo-dados-der.puml) | Modelo de dados |
-| [`05a-sequencia-sugestao-receitas.puml`](docs/plantuml/05a-sequencia-sugestao-receitas.puml) | Sequência - sugestão de receitas |
-| [`05b-sequencia-preparo-baixa-estoque.puml`](docs/plantuml/05b-sequencia-preparo-baixa-estoque.puml) | Sequência - preparo e baixa automática |
-| [`05c-sequencia-lista-compras.puml`](docs/plantuml/05c-sequencia-lista-compras.puml) | Sequência - lista de compras |
-| [`05d-sequencia-alerta-vencimento.puml`](docs/plantuml/05d-sequencia-alerta-vencimento.puml) | Sequência - alerta de vencimento |
-| [`06-diagrama-atividade-alerta-vencimento.puml`](docs/plantuml/06-diagrama-atividade-alerta-vencimento.puml) | Atividade |
-| [`07-diagrama-estados-item-despensa.puml`](docs/plantuml/07-diagrama-estados-item-despensa.puml) | Transição de Estados |
-| [`08-diagrama-comunicacao-lista-compras.puml`](docs/plantuml/08-diagrama-comunicacao-lista-compras.puml) | Comunicação |
-| [`09-diagrama-implantacao.puml`](docs/plantuml/09-diagrama-implantacao.puml) | Implantação |
-
-### Renderização local
-
-```bash
-java -jar plantuml.jar -tpng docs/plantuml/*.puml -o ../diagramas
-```
-
----
-
-### Matriz de rastreabilidade
-
-| História | RF | RN | Caso de uso | Diagrama |
-|---|---|---|---|---|
-| US-01 | RF-01 | RN-01 | UC-01 | 01, 03 |
-| US-02 | RF-02 | RN-02, RN-03 | UC-02 | 01, 07 |
-| US-03 | RF-03 | RN-03 | UC-03 | 05d, 06 |
-| US-04 | RF-04 | RN-05 | UC-04 | 01, 04 |
-| US-05 | RF-05 | RN-01 | UC-05 | 03 |
-| US-06 | RF-06 | RN-06 | UC-06 | 03, 07 |
-| US-07 | RF-07 | RN-07 | UC-07 | 05a |
-| US-08 | RF-08 | RN-08 | UC-08 | 05a, 06 |
-| US-09 | RF-09 | RN-10, RN-11 | UC-09 | 05b, 07 |
-| US-10 | RF-10 | RN-09 | UC-10 | 05a |
-| US-11 | RF-11 | - | UC-11 | 03 |
-| US-12 | RF-12 | RN-13 | UC-12 | 05c, 08 |
-| US-13 | RF-13 | - | UC-13 | 03, 04 |
-| US-14 | RF-14 | RN-14, RN-15 | UC-14 | 01, 02 |
+O sistema foi projetado como um **monólito modular orientado a domínio**, dividido nas camadas de interface, aplicação, domínio e infraestrutura.
+
+- **Interface:** aplicação web e futuro aplicativo mobile.
+- **Aplicação:** orquestra casos de uso, autorização e transações.
+- **Domínio:** concentra entidades, políticas e regras de negócio.
+- **Infraestrutura:** banco de dados, cache, mensageria e notificações.
+
+Foram planejados os padrões Repository, Service Layer, DTO, Strategy e Observer. A escolha do monólito modular reduz a complexidade operacional e mantém os módulos separados para uma futura evolução.
+
+### Exemplos de diagramas
+
+| Diagrama de Arquitetura | Detalhe da Arquitetura |
+| :---: | :---: |
+| **Componentes** | **Classes** |
+| <img src="docs/diagramas/02-diagrama-componentes.png" alt="Diagrama de Componentes" width="430px"/> | <img src="docs/diagramas/03-diagrama-classes.png" alt="Diagrama de Classes" width="430px"/> |
+| **Modelo de Dados** | **Sequência de Sugestão de Receitas** |
+| <img src="docs/diagramas/04-modelo-dados-der.png" alt="Modelo de Dados" width="430px"/> | <img src="docs/diagramas/05a-sequencia-sugestao-receitas.png" alt="Diagrama de Sequência" width="430px"/> |
+| **Implantação** | **Casos de Uso** |
+| <img src="docs/diagramas/09-diagrama-implantacao.png" alt="Diagrama de Implantação" width="430px"/> | <img src="docs/diagramas/01-casos-de-uso.png" alt="Diagrama de Casos de Uso" width="430px"/> |
+
+Cada imagem foi gerada a partir de um arquivo PlantUML versionado em [docs/plantuml](docs/plantuml).
 
 ---
 
 ## 🔧 Instalação e Execução
 
-> [!WARNING]
-> Esta entrega não possui front-end, back-end, banco executável ou containers. Os passos abaixo servem apenas para baixar a documentação e renderizar os diagramas PlantUML.
+> [!IMPORTANT]
+> A atividade solicita apenas projeto, diagramação e arquitetura. Os comandos desta seção representam a execução futura da solução fictícia.
 
 ### Pré-requisitos
 
-- Git para clonar o repositório.
-- Java 17 ou superior para executar o PlantUML.
-- PlantUML e Graphviz para renderização local.
+- Java JDK 21
+- Maven 3.9
+- Node.js 20
+- Docker e Docker Compose
+- PlantUML e Graphviz
 
-### Instalação de Dependências
+### 🔑 Variáveis de Ambiente
 
-Não há dependências de aplicação a instalar. Para obter os arquivos:
+#### 1 Back-end (Spring Boot)
+
+| Variável | Descrição | Exemplo |
+|---|---|---|
+| `SERVER_PORT` | Porta da API | `8080` |
+| `SPRING_DATASOURCE_URL` | Conexão PostgreSQL | `jdbc:postgresql://localhost:5432/foodstack` |
+| `SPRING_DATASOURCE_USERNAME` | Usuário do banco | `foodstack` |
+| `SPRING_DATASOURCE_PASSWORD` | Senha do banco | `senha-local` |
+| `JWT_SECRET` | Assinatura dos tokens | `segredo-ficticio` |
+
+#### 2 Front-end (React, Vite)
+
+| Variável | Descrição | Exemplo |
+|---|---|---|
+| `VITE_API_URL` | URL da API | `http://localhost:8080/api` |
+| `VITE_APP_NAME` | Nome exibido | `FoodStack` |
+
+#### 3. Exemplos de Variáveis de Ambiente na Vercel
+
+##### **Exemplo 1 – Front-end com Next.js usando API externa**
+
+`NEXT_PUBLIC_API_URL=https://api.foodstack.example/api`
+
+##### **Exemplo 2 – Aplicação Full-stack (Next.js + Prisma + PostgreSQL)**
+
+`DATABASE_URL=postgresql://foodstack:senha@db.example:5432/foodstack`
+
+##### **Exemplo 3 – Integração com APIs externas**
+
+`SENDGRID_API_KEY=chave_ficticia`
+
+##### **Exemplo 4 – Frontend com Vite (EmailJS)**
+
+`VITE_EMAILJS_PUBLIC_KEY=chave_publica_ficticia`
+
+> Os valores são apenas exemplos acadêmicos e não representam credenciais reais.
+
+### 📦 Instalação de Dependências
+
+#### Front-end (React)
 
 ```bash
-git clone https://github.com/Pedroh26ES/FoodStack-Arquitetura.git
-cd FoodStack-Arquitetura
+cd frontend
+npm install
 ```
 
-### Como Executar a Documentação
-
-Para gerar novamente as imagens PNG a partir dos códigos PlantUML:
+#### Back-end (Spring Boot)
 
 ```bash
-java -jar plantuml.jar -tpng docs/plantuml/*.puml -o ../diagramas
+cd backend
+./mvnw dependency:resolve
 ```
 
-Não há aplicação para executar. A documentação completa é visualizada diretamente neste `README.md`; o Word é apenas uma versão complementar.
+### 💾 Inicialização do Banco de Dados (PostgreSQL)
+
+O banco seria iniciado pelo Docker Compose e atualizado pelo Flyway:
+
+```bash
+docker compose up -d postgres
+./mvnw flyway:migrate
+```
+
+### ⚡ Como Executar a Aplicação
+
+#### Terminal 1: Back-end (Spring Boot)
+
+```bash
+cd backend
+./mvnw spring-boot:run
+```
+
+#### Terminal 2: Front-end (React, Vite)
+
+```bash
+cd frontend
+npm run dev
+```
+
+#### 🐳 Execução Local Completa com Docker Compose (Incluindo Banco de Dados)
+
+```bash
+docker compose up --build
+```
+
+#### 📦 Passos para build, inicialização e execução
+
+1. Configurar as variáveis de ambiente.
+2. Iniciar PostgreSQL e Redis.
+3. Executar as migrações.
+4. Iniciar o back-end.
+5. Iniciar o front-end.
+
+> Esses comandos documentam a arquitetura planejada. As respectivas pastas de código não existem nesta entrega.
 
 ---
 
 ## 🚀 Deploy
 
-Não existe deploy real nesta entrega. A infraestrutura abaixo representa uma proposta fictícia para uma futura implementação.
+O deploy planejado utiliza:
 
 | Camada | Tecnologia |
 |---|---|
-| Web | Vercel |
+| Front-end | Vercel |
 | API | AWS ECS Fargate |
 | Imagens | AWS ECR |
-| Banco | AWS RDS PostgreSQL |
-| Cache | AWS ElastiCache Redis |
-| Eventos | RabbitMQ / Amazon SQS |
-| E-mail | Amazon SES |
-| Push | Firebase Cloud Messaging |
+| Banco de dados | Amazon RDS PostgreSQL |
+| Cache | Amazon ElastiCache Redis |
+| Mensageria | Amazon SQS |
+| Monitoramento | CloudWatch e Grafana |
 | CI/CD | GitHub Actions |
+
+Não existe ambiente publicado porque a implementação não faz parte do trabalho.
 
 ---
 
 ## 📂 Estrutura de Pastas
 
 ```text
-foodstack/
+FoodStack-Arquitetura/
 ├── README.md
 ├── LICENSE
-├── .gitignore
 ├── assets/
-│   ├── logo-foodstack.svg
-│   ├── logo-foodstack.png
-│   └── readme/
-│       ├── banner_topo_logo_foodstack.png
-│       ├── foodstack_logo_animado_v4.svg
-│       ├── problema_solucao.png
-│       ├── visao_geral_solucao.png
-│       ├── mapa_modulos.png
-│       ├── todos_diagramas.png
-│       ├── final_encerramento.png
-│       └── foodstack_encerramento_animado.svg
+│   └── logo-foodstack.png
 └── docs/
+    ├── FoodStack - Documentação de Projeto.docx
     ├── diagramas/
     │   ├── 01-casos-de-uso.png
     │   ├── 02-diagrama-componentes.png
@@ -701,103 +336,112 @@ foodstack/
 
 ## 🎥 Demonstração
 
-Como não há aplicação implementada, a demonstração é feita pelos artefatos de projeto:
+A demonstração desta entrega é composta pelo documento e pelos diagramas.
 
-| Demonstração | Acesso |
-|---|---|
-| Documentação completa | [README principal](README.md) |
-| Versão complementar | [Template Word preenchido](docs/FoodStack%20-%20Documenta%C3%A7%C3%A3o%20de%20Projeto.docx) |
-| Casos de uso | [Visualizar diagrama](docs/diagramas/01-casos-de-uso.png) |
-| Componentes | [Visualizar diagrama](docs/diagramas/02-diagrama-componentes.png) |
-| Classes | [Visualizar diagrama](docs/diagramas/03-diagrama-classes.png) |
-| Modelo de dados | [Visualizar diagrama](docs/diagramas/04-modelo-dados-der.png) |
-| Implantação | [Visualizar diagrama](docs/diagramas/09-diagrama-implantacao.png) |
+### 📱 Aplicativo Mobile
 
-<p align="center">
-  <img src="assets/readme/visao_geral_solucao.png" alt="Visão geral da solução FoodStack" width="100%"/>
-</p>
+O aplicativo mobile foi apenas planejado. Seu comportamento está representado nos casos de uso e diagramas de sequência.
+
+### 🌐 Aplicação Web
+
+A aplicação web não foi implementada. A navegação e as responsabilidades estão representadas no diagrama de componentes.
+
+### 💻 Exemplo de Saída no Terminal (para Back-end, API, CLI)
+
+#### 1. Demonstração da API (Exemplo com cURL)
+
+Resposta fictícia planejada para consulta de estoque:
+
+```json
+{
+  "despensaId": 1,
+  "itens": 12,
+  "proximosDoVencimento": 3
+}
+```
+
+#### 2. Demonstração de Execução de CLI/Script
+
+Os arquivos PlantUML podem ser renderizados com:
+
+```bash
+java -jar plantuml.jar -tpng docs/plantuml/*.puml -o ../diagramas
+```
+
+| Diagrama | Código PlantUML | Imagem |
+|---|---|---|
+| Casos de uso | [01-casos-de-uso.puml](docs/plantuml/01-casos-de-uso.puml) | [PNG](docs/diagramas/01-casos-de-uso.png) |
+| Componentes | [02-diagrama-componentes.puml](docs/plantuml/02-diagrama-componentes.puml) | [PNG](docs/diagramas/02-diagrama-componentes.png) |
+| Classes | [03-diagrama-classes.puml](docs/plantuml/03-diagrama-classes.puml) | [PNG](docs/diagramas/03-diagrama-classes.png) |
+| Modelo de dados | [04-modelo-dados-der.puml](docs/plantuml/04-modelo-dados-der.puml) | [PNG](docs/diagramas/04-modelo-dados-der.png) |
+| Sequência: sugestões | [05a-sequencia-sugestao-receitas.puml](docs/plantuml/05a-sequencia-sugestao-receitas.puml) | [PNG](docs/diagramas/05a-sequencia-sugestao-receitas.png) |
+| Sequência: preparo | [05b-sequencia-preparo-baixa-estoque.puml](docs/plantuml/05b-sequencia-preparo-baixa-estoque.puml) | [PNG](docs/diagramas/05b-sequencia-preparo-baixa-estoque.png) |
+| Sequência: compras | [05c-sequencia-lista-compras.puml](docs/plantuml/05c-sequencia-lista-compras.puml) | [PNG](docs/diagramas/05c-sequencia-lista-compras.png) |
+| Sequência: vencimento | [05d-sequencia-alerta-vencimento.puml](docs/plantuml/05d-sequencia-alerta-vencimento.puml) | [PNG](docs/diagramas/05d-sequencia-alerta-vencimento.png) |
+| Atividade | [06-diagrama-atividade-alerta-vencimento.puml](docs/plantuml/06-diagrama-atividade-alerta-vencimento.puml) | [PNG](docs/diagramas/06-diagrama-atividade-alerta-vencimento.png) |
+| Estados | [07-diagrama-estados-item-despensa.puml](docs/plantuml/07-diagrama-estados-item-despensa.puml) | [PNG](docs/diagramas/07-diagrama-estados-item-despensa.png) |
+| Comunicação | [08-diagrama-comunicacao-lista-compras.puml](docs/plantuml/08-diagrama-comunicacao-lista-compras.puml) | [PNG](docs/diagramas/08-diagrama-comunicacao-lista-compras.png) |
+| Implantação | [09-diagrama-implantacao.puml](docs/plantuml/09-diagrama-implantacao.puml) | [PNG](docs/diagramas/09-diagrama-implantacao.png) |
 
 ---
 
 ## 🧪 Testes
 
-Como o escopo não inclui implementação, os testes descritos são uma estratégia planejada. A validação efetivamente realizada nesta entrega verifica os arquivos PlantUML e a documentação.
+### Testes Unitários e de Integração
 
-| Tipo | Cobertura |
-|---|---|
-| Unidade | Regras de validade, compatibilidade, permissões e baixa. |
-| Integração | Repositórios, transações e constraints. |
-| Contrato | Endpoints, DTOs e códigos HTTP. |
-| Arquitetura | Separação entre módulos e camadas. |
-| E2E | Cadastro de item, sugestão, preparo e compartilhamento. |
-| Documentação | Renderização dos arquivos PlantUML. |
+Testes planejados para uma futura implementação:
 
----
+- regras de validade e baixa de estoque;
+- permissões de dono, editor e leitor;
+- persistência e transações;
+- contratos dos endpoints REST.
 
-### Validação da entrega
+### Testes End-to-End (E2E)
 
-| Verificação | Resultado |
-|---|---|
-| README único com especificação completa | OK |
-| Um diagrama por tipo principal e 4 sequências detalhadas | OK |
-| 12 arquivos `.puml` versionados | OK |
-| 12 imagens `.png` renderizadas no README | OK |
-| 6 imagens visuais de apoio no README | OK |
-| PlantUML renderiza sem erro de sintaxe | OK |
-| Código de aplicação ausente | OK |
-| Requisitos, regras, contratos, arquitetura e rastreabilidade documentados | OK |
+Cenários planejados:
+
+- cadastrar ingrediente;
+- receber alerta de vencimento;
+- sugerir e preparar receita;
+- gerar lista de compras;
+- compartilhar despensa.
+
+Na entrega atual, a validação realizada consiste na renderização dos 12 arquivos PlantUML e na revisão visual do documento Word.
 
 ---
 
 ## 🔗 Documentações utilizadas
 
-- Template README solicitado: https://github.com/joaopauloaramuni/laboratorio-de-desenvolvimento-de-software/blob/main/TEMPLATES/template_README.md
-- PlantUML: https://plantuml.com/
-- C4 Model: https://c4model.com/
-- Spring Boot: https://spring.io/projects/spring-boot
-- React: https://react.dev/
-- PostgreSQL: https://www.postgresql.org/docs/
-- Docker: https://docs.docker.com/
+- [Template README da disciplina](https://github.com/joaopauloaramuni/laboratorio-de-desenvolvimento-de-software/blob/main/TEMPLATES/template_README.md)
+- [PlantUML](https://plantuml.com/)
+- [C4 Model](https://c4model.com/)
+- [Spring Boot](https://spring.io/projects/spring-boot)
+- [React](https://react.dev/)
+- [PostgreSQL](https://www.postgresql.org/docs/)
+- [Docker](https://docs.docker.com/)
 
 ---
 
 ## 👥 Autores
 
-| Campo | Informação |
+| Autor | Responsabilidade |
 |---|---|
-| Projeto | FoodStack |
-| Tema | Despensa virtual e gerador inteligente de receitas |
-| Tipo | Projeto técnico, documentação, arquitetura e diagramas |
-| Entrega | README único + PlantUML + imagens renderizadas, com sequências divididas por fluxo |
-| Versão | 1.0.0 |
-| Data | 07/06/2026 |
-
----
-
-| Autor | Repositório |
-|---|---|
-| Pedro Henrique | [Pedroh26ES](https://github.com/Pedroh26ES) |
+| Pedro Henrique | Requisitos, arquitetura, documentação e diagramas PlantUML |
 
 ---
 
 ## 🤝 Contribuição
 
-Este é um trabalho acadêmico individual. Sugestões podem ser registradas nas issues do repositório, mas alterações na entrega devem preservar o template obrigatório, as regras de negócio e os arquivos-fonte PlantUML.
+Este é um trabalho acadêmico individual. Alterações devem preservar o template obrigatório e manter os códigos PlantUML sincronizados com as imagens renderizadas.
 
 ---
 
 ## 🙏 Agradecimentos
 
-Agradecimento ao Prof. Dr. João Paulo Aramuni pela disponibilização dos templates de documentação e README utilizados como referência obrigatória neste trabalho.
-
----
-
-<p align="center">
-  <img src="assets/readme/foodstack_encerramento_animado.svg" alt="Encerramento animado FoodStack" width="100%"/>
-</p>
+Agradecimento ao Prof. Dr. João Paulo Aramuni pelos templates disponibilizados para a atividade.
 
 ---
 
 ## 📄 Licença
 
-Distribuído sob licença MIT. Consulte [`LICENSE`](LICENSE).
+Distribuído sob a licença MIT. Consulte [LICENSE](LICENSE).
