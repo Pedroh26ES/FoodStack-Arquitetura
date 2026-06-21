@@ -19,7 +19,7 @@
 </table>
 
 > [!IMPORTANT]
-> Este README foi reorganizado conforme o [template obrigatório do professor](https://github.com/joaopauloaramuni/laboratorio-de-desenvolvimento-de-software/blob/main/TEMPLATES/template_README.md). O trabalho no modelo Word obrigatório está em [**FoodStack - Documentação de Projeto.docx**](docs/FoodStack%20-%20Documenta%C3%A7%C3%A3o%20de%20Projeto.docx), e todo o código PlantUML está em [**docs/plantuml**](docs/plantuml).
+> **A documentação principal do FoodStack é este README.md**, estruturado conforme o [template obrigatório do professor](https://github.com/joaopauloaramuni/laboratorio-de-desenvolvimento-de-software/blob/main/TEMPLATES/template_README.md). O arquivo [FoodStack - Documentação de Projeto.docx](docs/FoodStack%20-%20Documenta%C3%A7%C3%A3o%20de%20Projeto.docx) é somente a versão complementar no modelo Word solicitado na atividade. Todo o código PlantUML está em [docs/plantuml](docs/plantuml).
 
 ---
 
@@ -59,7 +59,8 @@ O projeto está **concluído para entrega acadêmica**. Foram produzidos o READM
 
 | Recurso | Link | Descrição |
 |---|---|---|
-| Documento obrigatório | [Abrir o documento Word](docs/FoodStack%20-%20Documenta%C3%A7%C3%A3o%20de%20Projeto.docx) | Trabalho preenchido no template oficial da atividade. |
+| Documentação principal | [README do FoodStack](README.md) | Projeto completo conforme o template de README solicitado. |
+| Versão complementar em Word | [Abrir o arquivo DOCX](docs/FoodStack%20-%20Documenta%C3%A7%C3%A3o%20de%20Projeto.docx) | Cópia no modelo Word solicitado na atividade. |
 | Código PlantUML | [Acessar os arquivos .puml](docs/plantuml) | Fontes versionadas de todos os diagramas. |
 | Diagramas renderizados | [Acessar as imagens PNG](docs/diagramas) | Diagramas prontos para visualização. |
 | Template de README | [Consultar o modelo do professor](https://github.com/joaopauloaramuni/laboratorio-de-desenvolvimento-de-software/blob/main/TEMPLATES/template_README.md) | Estrutura usada neste README. |
@@ -116,7 +117,7 @@ Uma despensa virtual compartilhável que:
 
 ### Escopo acadêmico da entrega
 
-> **Documento no template obrigatório:** [FoodStack - Documentação de Projeto.docx](docs/FoodStack%20-%20Documenta%C3%A7%C3%A3o%20de%20Projeto.docx)
+> **Entrega principal:** este `README.md`, contendo a especificação completa do projeto. O [arquivo DOCX](docs/FoodStack%20-%20Documenta%C3%A7%C3%A3o%20de%20Projeto.docx) permanece apenas como versão complementar no modelo Word.
 
 Este repositório contém o **projeto técnico e arquitetural** do FoodStack. A entrega não contém implementação de front-end, back-end, scripts de banco, containers executáveis ou deploy real. O objetivo é documentar a solução com rigor técnico e manter os diagramas em PlantUML.
 
@@ -626,7 +627,7 @@ Para gerar novamente as imagens PNG a partir dos códigos PlantUML:
 java -jar plantuml.jar -tpng docs/plantuml/*.puml -o ../diagramas
 ```
 
-O documento Word pode ser aberto diretamente em `docs/FoodStack - Documentação de Projeto.docx`.
+Não há aplicação para executar. A documentação completa é visualizada diretamente neste `README.md`; o Word é apenas uma versão complementar.
 
 ---
 
@@ -704,7 +705,8 @@ Como não há aplicação implementada, a demonstração é feita pelos artefato
 
 | Demonstração | Acesso |
 |---|---|
-| Documento completo | [Template Word preenchido](docs/FoodStack%20-%20Documenta%C3%A7%C3%A3o%20de%20Projeto.docx) |
+| Documentação completa | [README principal](README.md) |
+| Versão complementar | [Template Word preenchido](docs/FoodStack%20-%20Documenta%C3%A7%C3%A3o%20de%20Projeto.docx) |
 | Casos de uso | [Visualizar diagrama](docs/diagramas/01-casos-de-uso.png) |
 | Componentes | [Visualizar diagrama](docs/diagramas/02-diagrama-componentes.png) |
 | Classes | [Visualizar diagrama](docs/diagramas/03-diagrama-classes.png) |
