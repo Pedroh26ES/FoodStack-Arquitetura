@@ -5,7 +5,7 @@
 👨‍🎓 Projeto de sistema elaborado pelo aluno **Pedro Henrique**<br/>
 como parte da disciplina **Projeto de Software**.
 
-**📅 21 de junho de 2026**
+**📅 10 de junho de 2026**
 
 </div>
 
@@ -31,13 +31,27 @@ como parte da disciplina **Projeto de Software**.
    - 3.6 [Diagramas de Estados](#36-diagramas-de-estados)
 4. [Modelos de Dados](#4-modelos-de-dados)
 
+**Informações complementares:**
+
+- [Tecnologias Utilizadas](#-tecnologias-utilizadas)
+- [Instalação e Execução](#-instalação-e-execução)
+- [Deploy](#-deploy)
+- [Estrutura de Pastas](#-estrutura-de-pastas)
+- [Demonstração](#-demonstração)
+- [Testes](#-testes)
+- [Documentações utilizadas](#-documentações-utilizadas)
+- [Autores](#-autores)
+- [Contribuição](#-contribuição)
+- [Agradecimentos](#-agradecimentos)
+- [Licença](#-licença)
+
 ---
 
 ## Histórico de Revisões 📝
 
 | Nome | Data | Razões para Mudança | Versão |
 |---|---|---|---|
-| Pedro Henrique | 21/06/2026 | Elaboração da documentação final conforme o template obrigatório. | 1.0 |
+| Pedro Henrique | 10/06/2026 | Elaboração da documentação final conforme o template obrigatório. | 1.0 |
 
 ---
 
@@ -49,7 +63,7 @@ O FoodStack é uma despensa virtual compartilhável que registra ingredientes, q
 
 Esta entrega é exclusivamente de **documentação, diagramação e arquitetura**. As tecnologias descritas são fictícias e planejadas, conforme solicitado na atividade. Não há código executável da aplicação.
 
-**Objetivos principais:**
+**🎯 Objetivos principais:**
 
 - reduzir o desperdício de alimentos;
 - facilitar o planejamento de refeições;
@@ -57,7 +71,7 @@ Esta entrega é exclusivamente de **documentação, diagramação e arquitetura*
 - recomendar receitas de acordo com o estoque;
 - permitir o compartilhamento da despensa entre familiares.
 
-**Documentos e fontes do projeto:**
+**📎 Documentos e fontes do projeto:**
 
 - [Documento Word no template obrigatório](docs/FoodStack%20-%20Documenta%C3%A7%C3%A3o%20de%20Projeto.docx)
 - [Códigos PlantUML](docs/plantuml)
@@ -300,7 +314,7 @@ O modelo de dados apresenta o esquema relacional planejado e a estratégia de ma
 | `ListaCompras` | `listas_compras` e `itens_lista_compras` | Agregado composto pelos ingredientes faltantes. |
 | `Notificacao` | `notificacoes` | Registro persistente de alertas e status de envio. |
 
-**Estratégias de persistência:**
+**🗄️ Estratégias de persistência:**
 
 - PostgreSQL para integridade referencial e transações;
 - Hibernate/JPA para mapeamento objeto-relacional;
@@ -309,9 +323,9 @@ O modelo de dados apresenta o esquema relacional planejado e a estratégia de ma
 - transação única durante a baixa dos ingredientes de uma receita;
 - histórico de estoque para auditoria das alterações.
 
-**🛠️ Tecnologias fictícias do projeto**
+## 🛠️ Tecnologias Utilizadas
 
-> As tecnologias abaixo representam uma implementação futura e foram definidas apenas para fins de projeto e arquitetura.
+> As tecnologias abaixo representam uma implementação futura e foram definidas apenas para fins de projeto e arquitetura. Nenhuma delas está implementada nesta entrega.
 
 | Área | Tecnologias e versões planejadas | Finalidade |
 |---|---|---|
@@ -330,9 +344,174 @@ O modelo de dados apresenta o esquema relacional planejado e a estratégia de ma
 | **Observabilidade** | OpenTelemetry 1.44, Prometheus 3, Grafana 11 e CloudWatch | Coletar logs, métricas e rastreamento distribuído. |
 | **Testes** | JUnit 5, Mockito 5, Testcontainers 1.20, ArchUnit e Playwright | Validar regras, integrações, arquitetura e fluxos de usuário. |
 
+**✅ Resultado esperado:** uma solução segura, modular, observável e preparada para evolução futura.
+
+> 🏗️ A arquitetura completa, incluindo componentes, implantação, classes e interações, está documentada na [Seção 3](#3-modelos-de-projeto).
+
 ---
 
-**✅ Resultado esperado da arquitetura tecnológica:** uma solução segura, modular, observável e preparada para evolução futura, sem que essas tecnologias estejam implementadas nesta entrega.
+## 🔧 Instalação e Execução
+
+> [!IMPORTANT]
+> Esta seção é **fictícia e planejada**. O repositório não possui front-end ou back-end executáveis, pois a atividade exige somente documentação, diagramas e arquitetura.
+
+### Pré-requisitos
+
+- Java JDK 21 e Maven 3.9;
+- Node.js 20 e npm 10;
+- PostgreSQL 16;
+- Docker 27 e Docker Compose 2.29;
+- PlantUML e Graphviz para renderização dos diagramas.
+
+### 🔑 Variáveis de Ambiente
+
+| Variável | Serviço | Exemplo fictício |
+|---|---|---|
+| `SPRING_DATASOURCE_URL` | Back-end | `jdbc:postgresql://localhost:5432/foodstack` |
+| `SPRING_DATASOURCE_USERNAME` | Back-end | `foodstack` |
+| `SPRING_DATASOURCE_PASSWORD` | Back-end | `senha-local` |
+| `JWT_SECRET` | Back-end | `segredo-ficticio` |
+| `VITE_API_URL` | Front-end | `http://localhost:8080/api` |
+
+### 📦 Instalação de Dependências
+
+Comandos previstos para uma futura implementação:
+
+```bash
+# Front-end
+cd frontend
+npm install
+
+# Back-end
+cd ../backend
+./mvnw dependency:resolve
+```
+
+### 💾 Inicialização do Banco de Dados
+
+```bash
+docker compose up -d postgres redis
+./mvnw flyway:migrate
+```
+
+### ⚡ Como Executar a Aplicação
+
+```bash
+# Terminal 1: API
+cd backend
+./mvnw spring-boot:run
+
+# Terminal 2: aplicação web
+cd frontend
+npm run dev
+```
+
+---
+
+## 🚀 Deploy
+
+O deploy planejado utiliza serviços gerenciados para reduzir a complexidade operacional.
+
+| Componente | Tecnologia fictícia | Destino |
+|---|---|---|
+| Aplicação web | React e Vite | Vercel |
+| API | Spring Boot em container | AWS ECS Fargate |
+| Imagens de container | Docker | Amazon ECR |
+| Banco de dados | PostgreSQL | Amazon RDS |
+| Cache | Redis | Amazon ElastiCache |
+| Mensageria | Eventos assíncronos | Amazon SQS |
+| E-mail | Alertas de validade | Amazon SES |
+| Arquivos | Imagens de receitas | Amazon S3 |
+| Monitoramento | Logs e métricas | CloudWatch e Grafana |
+
+> 🌐 Não existe ambiente publicado, pois o desenvolvimento da aplicação não faz parte da entrega.
+
+---
+
+## 📂 Estrutura de Pastas
+
+```text
+FoodStack-Arquitetura/
+├── README.md
+├── LICENSE
+├── assets/
+│   ├── logo-foodstack.png
+│   └── readme/
+│       ├── foodstack_logo_animado_v4.svg
+│       └── foodstack_encerramento_animado.svg
+└── docs/
+    ├── FoodStack - Documentação de Projeto.docx
+    ├── diagramas/
+    │   └── 12 diagramas renderizados em PNG
+    └── plantuml/
+        └── 12 códigos-fonte em PlantUML
+```
+
+---
+
+## 🎥 Demonstração
+
+Como não há aplicação implementada, a demonstração da entrega é realizada pelos artefatos de projeto:
+
+- 📄 [Documento no template obrigatório](docs/FoodStack%20-%20Documenta%C3%A7%C3%A3o%20de%20Projeto.docx)
+- 🖼️ [Diagramas renderizados](docs/diagramas)
+- 🌱 [Códigos PlantUML](docs/plantuml)
+- 📐 Casos de uso, sequências, componentes, implantação, classes, comunicação, estados e modelo de dados exibidos neste README.
+
+---
+
+## 🧪 Testes
+
+Os testes abaixo foram planejados para a futura implementação.
+
+| Tipo | Escopo planejado | Ferramentas |
+|---|---|---|
+| Unitários | Regras de validade, compatibilidade, permissões e baixa de estoque. | JUnit 5 e Mockito |
+| Integração | Repositórios, banco de dados, filas e transações. | Spring Boot Test e Testcontainers |
+| Contrato | Endpoints, DTOs, validações e códigos HTTP. | REST Assured e OpenAPI |
+| Arquitetura | Dependências entre módulos e camadas. | ArchUnit |
+| End-to-End | Cadastro, sugestão, preparo, compras e compartilhamento. | Playwright |
+| Documentação | Sintaxe e renderização dos diagramas. | PlantUML |
+
+Na entrega atual foram verificados os 12 códigos PlantUML, as 12 imagens correspondentes, os links do README e a estrutura do documento obrigatório.
+
+---
+
+## 🔗 Documentações utilizadas
+
+- [Template README da disciplina](https://github.com/joaopauloaramuni/laboratorio-de-desenvolvimento-de-software/blob/main/TEMPLATES/template_README.md)
+- [PlantUML](https://plantuml.com/)
+- [C4 Model](https://c4model.com/)
+- [React](https://react.dev/)
+- [Spring Boot](https://spring.io/projects/spring-boot)
+- [PostgreSQL](https://www.postgresql.org/docs/)
+- [Docker](https://docs.docker.com/)
+
+---
+
+## 👥 Autores
+
+| Autor | Responsabilidade |
+|---|---|
+| Pedro Henrique | Requisitos, arquitetura, documentação, modelos de dados e diagramas PlantUML. |
+
+---
+
+## 🤝 Contribuição
+
+Este é um trabalho acadêmico individual. Alterações devem preservar a estrutura obrigatória, manter os arquivos `.puml` sincronizados com as imagens e não incluir código executável fora do escopo.
+
+---
+
+## 🙏 Agradecimentos
+
+Agradecimento ao **Prof. Dr. João Paulo Aramuni** pela disponibilização dos templates utilizados na atividade e pelas orientações da disciplina Projeto de Software.
+
+---
+
+## 📄 Licença
+
+Este projeto acadêmico está distribuído sob a licença MIT. Consulte o arquivo [LICENSE](LICENSE).
 
 ---
 
