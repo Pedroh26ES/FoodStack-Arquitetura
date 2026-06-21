@@ -5,6 +5,8 @@
 👨‍🎓 Projeto de sistema elaborado pelo aluno **Pedro Henrique**<br/>
 como parte da disciplina **Projeto de Software**.
 
+👨‍🏫 Professor: **Prof. Dr. João Paulo Aramuni** | [GitHub](https://github.com/joaopauloaramuni)
+
 **📅 10 de junho de 2026**
 
 </div>
@@ -512,7 +514,7 @@ Este é um trabalho acadêmico individual. Alterações devem preservar a estrut
 
 ## 🙏 Agradecimentos
 
-Agradecimento ao **Prof. Dr. João Paulo Aramuni** pela disponibilização dos templates utilizados na atividade e pelas orientações da disciplina Projeto de Software.
+Agradecimento ao **Prof. Dr. João Paulo Aramuni** ([GitHub](https://github.com/joaopauloaramuni)) pela disponibilização dos templates utilizados na atividade e pelas orientações da disciplina Projeto de Software.
 
 ---
 

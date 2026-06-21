@@ -1,5 +1,7 @@
 # 📚 Documentação do FoodStack
 
+**Professor:** Prof. Dr. João Paulo Aramuni | [GitHub](https://github.com/joaopauloaramuni)
+
 > [!IMPORTANT]
 > A versão em PDF é a principal para leitura e conferência no GitHub.
 
