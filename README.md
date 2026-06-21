@@ -1,34 +1,120 @@
-# 🍽️ FoodStack
+<!-- README estruturado a partir do template obrigatório indicado na atividade. -->
+
+# 🏷️ FoodStack 👨‍💻
+
+> [!NOTE]
+> **Despensa virtual e motor de recomendação de receitas** que reduz desperdícios ao combinar estoque doméstico, validade dos alimentos, restrições alimentares e compartilhamento familiar.
+
+<table>
+  <tr>
+    <td width="800px">
+      <div align="justify">
+        O <b>FoodStack</b> é um projeto acadêmico individual de documentação, diagramação e arquitetura de software. A solução organiza os alimentos disponíveis em casa, alerta sobre vencimentos e recomenda receitas compatíveis. Conforme definido na atividade, este repositório <b>não contém a implementação da aplicação</b>: apresenta o planejamento técnico, tecnologias fictícias, requisitos, regras de negócio e diagramas produzidos obrigatoriamente em PlantUML.
+      </div>
+    </td>
+    <td>
+      <img src="assets/logo-foodstack.png" alt="Logo do FoodStack" width="150px"/>
+    </td>
+  </tr>
+</table>
+
+> [!IMPORTANT]
+> Este README foi reorganizado conforme o [template obrigatório do professor](https://github.com/joaopauloaramuni/laboratorio-de-desenvolvimento-de-software/blob/main/TEMPLATES/template_README.md). O trabalho no modelo Word obrigatório está em [**FoodStack - Documentação de Projeto.docx**](docs/FoodStack%20-%20Documenta%C3%A7%C3%A3o%20de%20Projeto.docx), e todo o código PlantUML está em [**docs/plantuml**](docs/plantuml).
+
+---
+
+## 🚧 Status do Projeto
+
+![Status](https://img.shields.io/badge/status-projeto%20concluído-2ea44f?style=for-the-badge)
+![Entrega](https://img.shields.io/badge/entrega-documentação%20e%20arquitetura-007ec6?style=for-the-badge)
+![PlantUML](https://img.shields.io/badge/PlantUML-obrigatório-F7A81B?style=for-the-badge&logo=uml&logoColor=white)
+![Versão](https://img.shields.io/badge/versão-1.1.0-blue?style=for-the-badge)
+![Licença](https://img.shields.io/badge/licença-MIT-green?style=for-the-badge)
+
+O projeto está **concluído para entrega acadêmica**. Foram produzidos o README no modelo solicitado, o documento Word no template obrigatório, 12 códigos-fonte PlantUML e 12 diagramas renderizados.
+
+---
+
+## 📚 Índice
+
+- [Links Úteis](#-links-úteis)
+- [Sobre o Projeto](#-sobre-o-projeto)
+- [Funcionalidades Principais](#-funcionalidades-principais)
+- [Tecnologias Utilizadas](#-tecnologias-utilizadas)
+- [Arquitetura](#-arquitetura)
+- [Instalação e Execução](#-instalação-e-execução)
+- [Deploy](#-deploy)
+- [Estrutura de Pastas](#-estrutura-de-pastas)
+- [Demonstração](#-demonstração)
+- [Testes](#-testes)
+- [Documentações utilizadas](#-documentações-utilizadas)
+- [Autores](#-autores)
+- [Contribuição](#-contribuição)
+- [Agradecimentos](#-agradecimentos)
+- [Licença](#-licença)
+
+---
+
+## 🔗 Links Úteis
+
+| Recurso | Link | Descrição |
+|---|---|---|
+| Documento obrigatório | [Abrir o documento Word](docs/FoodStack%20-%20Documenta%C3%A7%C3%A3o%20de%20Projeto.docx) | Trabalho preenchido no template oficial da atividade. |
+| Código PlantUML | [Acessar os arquivos .puml](docs/plantuml) | Fontes versionadas de todos os diagramas. |
+| Diagramas renderizados | [Acessar as imagens PNG](docs/diagramas) | Diagramas prontos para visualização. |
+| Template de README | [Consultar o modelo do professor](https://github.com/joaopauloaramuni/laboratorio-de-desenvolvimento-de-software/blob/main/TEMPLATES/template_README.md) | Estrutura usada neste README. |
+| PlantUML | [Documentação oficial](https://plantuml.com/) | Ferramenta obrigatória utilizada na modelagem. |
+
+> Não há demo online nem aplicativo para download, pois a atividade solicita somente o projeto, a diagramação e a arquitetura.
+
+---
+
+## 📝 Sobre o Projeto
+
+O FoodStack é uma aplicação planejada para organizar a despensa doméstica e recomendar receitas com base nos alimentos disponíveis. O sistema considera estoque, quantidade, unidade de medida, validade, local de armazenamento, restrições alimentares e permissões de compartilhamento.
+
+### 🎯 Problema
+
+Usuários frequentemente perdem alimentos por vencimento, compram itens duplicados por falta de visibilidade e têm dificuldade para decidir o que cozinhar com os ingredientes disponíveis.
+
+### ✅ Solução
+
+Uma despensa virtual compartilhável que:
+
+- registra ingredientes e quantidades;
+- acompanha validade dos alimentos;
+- alerta itens próximos do vencimento;
+- recomenda receitas compatíveis com o estoque;
+- prioriza alimentos que precisam ser consumidos;
+- baixa automaticamente o estoque após preparo;
+- gera lista de compras com faltantes;
+- permite colaboração entre membros da família.
 
 <p align="center">
-  <img src="assets/readme/foodstack_logo_animado_v4.svg" alt="Header animado FoodStack" width="88%"/>
+  <img src="assets/readme/visao_geral_solucao.png" alt="Visão geral da solução FoodStack" width="100%"/>
 </p>
 
-> **Despensa virtual e motor de recomendação de receitas** baseado em estoque doméstico, validade de alimentos, restrições alimentares e compartilhamento familiar.
+### 💼 Valor entregue
 
-<h2 align="center">➡️ <a href="#galeria-de-diagramas">VER GALERIA DE DIAGRAMAS UML</a> ⬅️</h2>
-
----
-
-## 🧭 Atalhos principais
-
-| Área | Link |
+| Valor | Resultado esperado |
 |---|---|
-| 📌 Escopo da entrega | [Escopo](#-escopo-da-entrega) |
-| 🧩 Resumo técnico | [Resumo técnico](#-resumo-técnico) |
-| 🖼️ Visuais do projeto | [Problema x Solução](#problema-solucao) |
-| ✅ Requisitos funcionais | [Requisitos funcionais](#-requisitos-funcionais) |
-| 🛡️ Requisitos não funcionais | [Requisitos não funcionais](#️-requisitos-não-funcionais) |
-| 📐 Regras de negócio | [Regras de negócio](#-regras-de-negócio) |
-| 🔁 Contratos de operação | [Contratos de operação](#-contratos-de-operação) |
-| 🏗️ Arquitetura | [Arquitetura de solução](#️-arquitetura-de-solução) |
-| 🖼️ Diagramas renderizados | [Galeria de diagramas](#galeria-de-diagramas) |
-| 🌱 Código PlantUML | [Arquivos PlantUML](#-arquivos-plantuml) |
-| 🧭 Rastreabilidade | [Matriz de rastreabilidade](#-matriz-de-rastreabilidade) |
+| Redução de desperdício | Alimentos próximos do vencimento são priorizados. |
+| Melhor planejamento | Usuário sabe o que tem e o que falta comprar. |
+| Decisão rápida | Sistema sugere receitas compatíveis. |
+| Consistência operacional | Estoque é atualizado após preparo. |
+| Colaboração | Despensa pode ser compartilhada com permissões. |
 
 ---
 
-## 📌 Escopo da entrega
+### Problema x solução
+
+<p align="center">
+  <img src="assets/readme/problema_solucao.png" alt="Infográfico Problema x Solução do FoodStack" width="100%"/>
+</p>
+
+---
+
+### Escopo acadêmico da entrega
 
 > **Documento no template obrigatório:** [FoodStack - Documentação de Projeto.docx](docs/FoodStack%20-%20Documenta%C3%A7%C3%A3o%20de%20Projeto.docx)
 
@@ -67,71 +153,19 @@ A separação dos diagramas de sequência foi feita porque o template `.docx` so
 ---
 <a id="problema-solucao"></a>
 
-## 🖼️ Problema x Solução
-
-<p align="center">
-  <img src="assets/readme/problema_solucao.png" alt="Infográfico Problema x Solução do FoodStack" width="100%"/>
-</p>
-
 ---
 
-## 🧩 Resumo técnico
+## ✨ Funcionalidades Principais
 
-O FoodStack é uma aplicação planejada para organizar a despensa doméstica e recomendar receitas com base nos alimentos disponíveis. O sistema considera estoque, quantidade, unidade de medida, validade, local de armazenamento, restrições alimentares e permissões de compartilhamento.
+- **Gestão da despensa:** cadastro, consulta, edição e remoção de ingredientes.
+- **Controle de validade:** identificação e notificação de itens próximos do vencimento.
+- **Sugestão de receitas:** ranking de receitas compatíveis com o estoque disponível.
+- **Baixa automática:** atualização transacional das quantidades após o preparo.
+- **Lista de compras:** cálculo dos ingredientes ausentes ou insuficientes.
+- **Restrições alimentares:** filtragem de receitas incompatíveis com o usuário.
+- **Compartilhamento familiar:** acesso à despensa com papéis de dono, editor e leitor.
 
-### 🎯 Problema
-
-Usuários frequentemente perdem alimentos por vencimento, compram itens duplicados por falta de visibilidade e têm dificuldade para decidir o que cozinhar com os ingredientes disponíveis.
-
-### ✅ Solução
-
-Uma despensa virtual compartilhável que:
-
-- registra ingredientes e quantidades;
-- acompanha validade dos alimentos;
-- alerta itens próximos do vencimento;
-- recomenda receitas compatíveis com o estoque;
-- prioriza alimentos que precisam ser consumidos;
-- baixa automaticamente o estoque após preparo;
-- gera lista de compras com faltantes;
-- permite colaboração entre membros da família.
-
-<p align="center">
-  <img src="assets/readme/visao_geral_solucao.png" alt="Visão geral da solução FoodStack" width="100%"/>
-</p>
-
-### 💼 Valor entregue
-
-| Valor | Resultado esperado |
-|---|---|
-| Redução de desperdício | Alimentos próximos do vencimento são priorizados. |
-| Melhor planejamento | Usuário sabe o que tem e o que falta comprar. |
-| Decisão rápida | Sistema sugere receitas compatíveis. |
-| Consistência operacional | Estoque é atualizado após preparo. |
-| Colaboração | Despensa pode ser compartilhada com permissões. |
-
----
-
-## ⚙️ Tecnologias planejadas
-
-> As tecnologias abaixo são fictícias para uma futura implementação. Elas existem para documentar uma arquitetura realista e profissional.
-
-| Camada | Tecnologias |
-|---|---|
-| Front-end | React 19, TypeScript 5.8, Vite 7, Tailwind CSS |
-| Mobile futuro | React Native, Expo |
-| Back-end | Java 21, Spring Boot 3.4, Spring Security, Spring Data JPA |
-| API | REST, OpenAPI 3.1, DTOs, validação de contratos |
-| Banco de dados | PostgreSQL 16, Flyway, Hibernate |
-| Cache | Redis 7 |
-| Eventos | RabbitMQ / Amazon SQS |
-| Cloud | AWS ECS Fargate, AWS RDS, AWS S3, Amazon SES |
-| Observabilidade | OpenTelemetry, Prometheus, Grafana, CloudWatch |
-| Qualidade | JUnit, Mockito, Testcontainers, Playwright, ArchUnit |
-
----
-
-## ✅ Requisitos funcionais
+### Requisitos funcionais
 
 > A numeração dos requisitos funcionais foi alinhada às **14 histórias de usuário**: cada `RF` representa a capacidade principal descrita pela `US` correspondente.
 
@@ -154,7 +188,7 @@ Uma despensa virtual compartilhável que:
 
 ---
 
-## 👤 Histórias de usuário
+### Histórias de usuário
 
 | ID | História |
 |---|---|
@@ -175,7 +209,7 @@ Uma despensa virtual compartilhável que:
 
 ---
 
-## 🛡️ Requisitos não funcionais
+### Requisitos não funcionais
 
 | ID | Categoria | Requisito |
 |---|---|---|
@@ -192,7 +226,7 @@ Uma despensa virtual compartilhável que:
 
 ---
 
-## 📐 Regras de negócio
+### Regras de negócio
 
 | ID | Regra |
 |---|---|
@@ -214,7 +248,7 @@ Uma despensa virtual compartilhável que:
 
 ---
 
-## 🔐 Atores e permissões
+### Atores e permissões
 
 | Perfil | Permissões |
 |---|---|
@@ -226,7 +260,7 @@ Uma despensa virtual compartilhável que:
 
 ---
 
-## 🧾 Casos de uso
+### Casos de uso
 
 | ID | Caso de uso |
 |---|---|
@@ -247,7 +281,7 @@ Uma despensa virtual compartilhável que:
 
 ---
 
-## 🔁 Contratos de operação
+### Contratos de operação
 
 | Contrato | Operação | Responsabilidade | Falhas esperadas |
 |---|---|---|---|
@@ -261,7 +295,58 @@ Uma despensa virtual compartilhável que:
 
 ---
 
-## 🏗️ Arquitetura de solução
+## 🛠 Tecnologias Utilizadas
+
+> As tecnologias são **fictícias e planejadas**, como solicitado na atividade. Nenhum código de aplicação foi desenvolvido.
+
+### 💻 Front-end
+
+- **Framework:** React 19
+- **Linguagem:** TypeScript 5.8
+- **Estilização:** Tailwind CSS
+- **Build tool:** Vite 7
+
+### 🖥️ Back-end
+
+- **Linguagem:** Java 21
+- **Framework:** Spring Boot 3.4
+- **Persistência:** Spring Data JPA, Hibernate e Flyway
+- **Banco de dados:** PostgreSQL 16
+- **Autenticação:** Spring Security e JWT
+
+### 📱 Mobile (Opcional)
+
+- **Framework planejado:** React Native
+- **Ferramentas:** Expo e Firebase Cloud Messaging
+
+### ⚙️ Infraestrutura & DevOps
+
+- **Containerização:** Docker e Docker Compose
+- **Cloud:** AWS ECS Fargate, RDS, S3 e SES
+- **Cache e eventos:** Redis 7 e RabbitMQ/Amazon SQS
+- **CI/CD:** GitHub Actions
+- **Observabilidade:** OpenTelemetry, Prometheus, Grafana e CloudWatch
+
+#### Resumo por camada
+
+> As tecnologias abaixo são fictícias para uma futura implementação. Elas existem para documentar uma arquitetura realista e profissional.
+
+| Camada | Tecnologias |
+|---|---|
+| Front-end | React 19, TypeScript 5.8, Vite 7, Tailwind CSS |
+| Mobile futuro | React Native, Expo |
+| Back-end | Java 21, Spring Boot 3.4, Spring Security, Spring Data JPA |
+| API | REST, OpenAPI 3.1, DTOs, validação de contratos |
+| Banco de dados | PostgreSQL 16, Flyway, Hibernate |
+| Cache | Redis 7 |
+| Eventos | RabbitMQ / Amazon SQS |
+| Cloud | AWS ECS Fargate, AWS RDS, AWS S3, Amazon SES |
+| Observabilidade | OpenTelemetry, Prometheus, Grafana, CloudWatch |
+| Qualidade | JUnit, Mockito, Testcontainers, Playwright, ArchUnit |
+
+---
+
+## 🏗 Arquitetura
 
 O FoodStack foi projetado como um **monólito modular orientado a domínio**, separando interface, aplicação, domínio e infraestrutura.
 
@@ -292,7 +377,7 @@ O FoodStack foi projetado como um **monólito modular orientado a domínio**, se
 
 ---
 
-## 🧬 Modelo de domínio
+### Modelo de domínio
 
 | Entidade | Papel |
 |---|---|
@@ -309,7 +394,7 @@ O FoodStack foi projetado como um **monólito modular orientado a domínio**, se
 
 ---
 
-## 🗄️ Modelo de dados
+### Modelo de dados
 
 | Tabela | Finalidade |
 |---|---|
@@ -330,7 +415,7 @@ O FoodStack foi projetado como um **monólito modular orientado a domínio**, se
 
 ---
 
-## 🔌 API planejada
+### API planejada
 
 | Método | Endpoint | Descrição |
 |---|---|---|
@@ -348,36 +433,7 @@ O FoodStack foi projetado como um **monólito modular orientado a domínio**, se
 
 ---
 
-## 🧪 Estratégia de testes
-
-| Tipo | Cobertura |
-|---|---|
-| Unidade | Regras de validade, compatibilidade, permissões e baixa. |
-| Integração | Repositórios, transações e constraints. |
-| Contrato | Endpoints, DTOs e códigos HTTP. |
-| Arquitetura | Separação entre módulos e camadas. |
-| E2E | Cadastro de item, sugestão, preparo e compartilhamento. |
-| Documentação | Renderização dos arquivos PlantUML. |
-
----
-
-## 🚀 Deploy planejado
-
-| Camada | Tecnologia |
-|---|---|
-| Web | Vercel |
-| API | AWS ECS Fargate |
-| Imagens | AWS ECR |
-| Banco | AWS RDS PostgreSQL |
-| Cache | AWS ElastiCache Redis |
-| Eventos | RabbitMQ / Amazon SQS |
-| E-mail | Amazon SES |
-| Push | Firebase Cloud Messaging |
-| CI/CD | GitHub Actions |
-
----
-
-## 🧭 Infográfico dos diagramas
+### Infográfico dos diagramas
 
 <p align="center">
   <img src="assets/readme/todos_diagramas.png" alt="Infográfico dos tipos de diagramas UML e arquiteturais do FoodStack" width="100%"/>
@@ -389,7 +445,9 @@ O FoodStack foi projetado como um **monólito modular orientado a domínio**, se
 
 <a id="galeria-de-diagramas"></a>
 
-## 🖼️ Galeria de diagramas UML
+<a id="galeria-de-diagramas"></a>
+
+### Galeria de diagramas UML
 
 > Cada imagem abaixo foi gerada a partir do respectivo arquivo PlantUML. O repositório mantém **um diagrama por tipo principal** e detalha os fluxos de sequência em **4 diagramas separados**, atendendo ao template do trabalho.
 
@@ -494,7 +552,7 @@ O FoodStack foi projetado como um **monólito modular orientado a domínio**, se
 
 ---
 
-## 🌱 Arquivos PlantUML
+### Arquivos PlantUML
 
 | Arquivo | Tipo |
 |---|---|
@@ -519,7 +577,7 @@ java -jar plantuml.jar -tpng docs/plantuml/*.puml -o ../diagramas
 
 ---
 
-## 🧭 Matriz de rastreabilidade
+### Matriz de rastreabilidade
 
 | História | RF | RN | Caso de uso | Diagrama |
 |---|---|---|---|---|
@@ -540,7 +598,57 @@ java -jar plantuml.jar -tpng docs/plantuml/*.puml -o ../diagramas
 
 ---
 
-## 📁 Estrutura do repositório
+## 🔧 Instalação e Execução
+
+> [!WARNING]
+> Esta entrega não possui front-end, back-end, banco executável ou containers. Os passos abaixo servem apenas para baixar a documentação e renderizar os diagramas PlantUML.
+
+### Pré-requisitos
+
+- Git para clonar o repositório.
+- Java 17 ou superior para executar o PlantUML.
+- PlantUML e Graphviz para renderização local.
+
+### Instalação de Dependências
+
+Não há dependências de aplicação a instalar. Para obter os arquivos:
+
+```bash
+git clone https://github.com/Pedroh26ES/FoodStack-Arquitetura.git
+cd FoodStack-Arquitetura
+```
+
+### Como Executar a Documentação
+
+Para gerar novamente as imagens PNG a partir dos códigos PlantUML:
+
+```bash
+java -jar plantuml.jar -tpng docs/plantuml/*.puml -o ../diagramas
+```
+
+O documento Word pode ser aberto diretamente em `docs/FoodStack - Documentação de Projeto.docx`.
+
+---
+
+## 🚀 Deploy
+
+Não existe deploy real nesta entrega. A infraestrutura abaixo representa uma proposta fictícia para uma futura implementação.
+
+| Camada | Tecnologia |
+|---|---|
+| Web | Vercel |
+| API | AWS ECS Fargate |
+| Imagens | AWS ECR |
+| Banco | AWS RDS PostgreSQL |
+| Cache | AWS ElastiCache Redis |
+| Eventos | RabbitMQ / Amazon SQS |
+| E-mail | Amazon SES |
+| Push | Firebase Cloud Messaging |
+| CI/CD | GitHub Actions |
+
+---
+
+## 📂 Estrutura de Pastas
 
 ```text
 foodstack/
@@ -590,7 +698,41 @@ foodstack/
 
 ---
 
-## ✅ Validação da entrega
+## 🎥 Demonstração
+
+Como não há aplicação implementada, a demonstração é feita pelos artefatos de projeto:
+
+| Demonstração | Acesso |
+|---|---|
+| Documento completo | [Template Word preenchido](docs/FoodStack%20-%20Documenta%C3%A7%C3%A3o%20de%20Projeto.docx) |
+| Casos de uso | [Visualizar diagrama](docs/diagramas/01-casos-de-uso.png) |
+| Componentes | [Visualizar diagrama](docs/diagramas/02-diagrama-componentes.png) |
+| Classes | [Visualizar diagrama](docs/diagramas/03-diagrama-classes.png) |
+| Modelo de dados | [Visualizar diagrama](docs/diagramas/04-modelo-dados-der.png) |
+| Implantação | [Visualizar diagrama](docs/diagramas/09-diagrama-implantacao.png) |
+
+<p align="center">
+  <img src="assets/readme/visao_geral_solucao.png" alt="Visão geral da solução FoodStack" width="100%"/>
+</p>
+
+---
+
+## 🧪 Testes
+
+Como o escopo não inclui implementação, os testes descritos são uma estratégia planejada. A validação efetivamente realizada nesta entrega verifica os arquivos PlantUML e a documentação.
+
+| Tipo | Cobertura |
+|---|---|
+| Unidade | Regras de validade, compatibilidade, permissões e baixa. |
+| Integração | Repositórios, transações e constraints. |
+| Contrato | Endpoints, DTOs e códigos HTTP. |
+| Arquitetura | Separação entre módulos e camadas. |
+| E2E | Cadastro de item, sugestão, preparo e compartilhamento. |
+| Documentação | Renderização dos arquivos PlantUML. |
+
+---
+
+### Validação da entrega
 
 | Verificação | Resultado |
 |---|---|
@@ -605,7 +747,7 @@ foodstack/
 
 ---
 
-## 📖 Referências
+## 🔗 Documentações utilizadas
 
 - Template README solicitado: https://github.com/joaopauloaramuni/laboratorio-de-desenvolvimento-de-software/blob/main/TEMPLATES/template_README.md
 - PlantUML: https://plantuml.com/
@@ -617,7 +759,7 @@ foodstack/
 
 ---
 
-## 👤 Autor
+## 👥 Autores
 
 | Campo | Informação |
 |---|---|
@@ -630,7 +772,23 @@ foodstack/
 
 ---
 
-## 🏁 Encerramento
+| Autor | Repositório |
+|---|---|
+| Pedro Henrique | [Pedroh26ES](https://github.com/Pedroh26ES) |
+
+---
+
+## 🤝 Contribuição
+
+Este é um trabalho acadêmico individual. Sugestões podem ser registradas nas issues do repositório, mas alterações na entrega devem preservar o template obrigatório, as regras de negócio e os arquivos-fonte PlantUML.
+
+---
+
+## 🙏 Agradecimentos
+
+Agradecimento ao Prof. Dr. João Paulo Aramuni pela disponibilização dos templates de documentação e README utilizados como referência obrigatória neste trabalho.
+
+---
 
 <p align="center">
   <img src="assets/readme/foodstack_encerramento_animado.svg" alt="Encerramento animado FoodStack" width="100%"/>
@@ -638,6 +796,6 @@ foodstack/
 
 ---
 
-## 📜 Licença
+## 📄 Licença
 
 Distribuído sob licença MIT. Consulte [`LICENSE`](LICENSE).
