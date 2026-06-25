@@ -2,13 +2,6 @@
 
 **📌 Versão 1.0**
 
-👨‍🎓 Projeto de sistema elaborado pelo aluno **Pedro Henrique**<br/>
-como parte da disciplina **Projeto de Software**.
-
-👨‍🏫 Professor: **Prof. Dr. João Paulo Aramuni** | [GitHub](https://github.com/joaopauloaramuni)
-
-**📅 10 de junho de 2026**
-
 </div>
 
 <p align="center">
